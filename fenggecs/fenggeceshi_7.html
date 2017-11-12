@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>风格测试</title>
+		<link href="css/style_fenggeceshi_tap6-8.css?time=2017072509.css" rel="stylesheet">
+		<script src="../js/jquery-1.11.1.min.js?time=2017072509"></script>
+		<script src="../Layer/layer.js?time=2017072509"></script>
+		<script type="text/javascript" src="js/fenggecs.js?time=2017072509"></script>
+	</head>
+	<script>
+		function open_fenggeceshi8() {
+			var disadvantages = [];
+			$(".selection").each(function(i, item) {
+				if($(item).css('background-image').indexOf('img/7_k_pre@2x.png') > 0) {
+					disadvantages.push($(item).text());
+				}
+			})
+			window.localStorage.setItem('disadvantages', disadvantages);
+			var View = window.localStorage.disadvantages;
+
+			if((View == null) || (View == '') || (View == undefined)) {
+				layer.msg("请选择合适体型");
+			} else {
+				window.location.href = "fenggeceshi_8.html";
+			}
+		}
+	</script>
+
+	<body>
+		<img src="img/dbg.png" style="width: 100%; height: 100%; z-index: -100;position: fixed;" />
+		<header id="st-trigger-effects" class="column">
+			<div class="back">
+				<a href="javascript:void(0);" onclick="closeWin(6);"><img src="img/return@2x.png" alt="">返回</a>
+			</div>
+			<p>风格测试</p>
+			<a id="close" href="javascript:void(0)" onclick="return_Launch();"><img src="img/close@2x.png" /></a>
+
+			<div class="progress">
+
+				<li><img src="img/d1_pre@2x.png" /></li>
+				<li><img src="img/d2_pre@2x.png" /></li>
+				<li><img src="img/d3_pre@2x.png" /></li>
+				<li><img src="img/d4_pre@2x.png" /></li>
+				<li><img src="img/d5_pre@2x.png" /></li>
+				<li><img src="img/d6_pre@2x.png" /></li>
+				<li><img src="img/d7_pre@2x.png" /></li>
+				<li><img src="img/d8@2x.png" /></li>
+
+			</div>
+		</header>
+
+		<div class="contain">
+			<div class="tezheng">
+				<div class="select_left">
+					<div class="selection">脖子短</div>
+					<div class="selection">胸大</div>
+					<div class="selection">腰粗</div>
+					<div class="selection">宽臀</div>
+					<div class="selection">窄臀</div>
+					<div class="selection">平臀</div>
+				</div>
+				<div class="tezheng_icon">
+					<img class="icon" src="img/7_t@2x.png" />
+					<img id="d_1" src="img/7_d@2x.png" />
+					<img id="d_2" src="img/7_d@2x.png" />
+					<img id="d_3" src="img/7_d@2x.png" />
+					<img id="d_4" src="img/7_d@2x.png" />
+					<img id="d_5" src="img/7_d@2x.png" />
+					<img id="d_6" src="img/7_d@2x.png" />
+					<img id="d_7" src="img/7_d@2x.png" />
+					<img id="d_8" src="img/7_d@2x.png" />
+					<img id="d_9" src="img/7_d@2x.png" />
+					<img id="d_10" src="img/7_d@2x.png" />
+					<img id="d_11" src="img/7_d@2x.png" />
+					<img id="d_12" src="img/7_d@2x.png" />
+				</div>
+				<div class="select_right">
+					<div class="selection">肩宽</div>
+					<div class="selection">上臂粗</div>
+					<div class="selection">腹部突出</div>
+					<div class="selection">大腿粗</div>
+					<div class="selection">小腿粗</div>
+					<div class="selection">腿不直</div>
+				</div>
+			</div>
+			<script type="text/javascript" charset="utf-8">
+				$('.selection').bind('click', function() {
+					if($(this).css('background-image').indexOf('img/7_k@2x.png') > 0) {
+						$(this).css('background-image', 'url("img/7_k_pre@2x.png")');
+						if($(this).text() == '脖子短') {
+							$('#d_1').show().animate({
+								width: '8px',
+								height: '8px'
+							}, 100, function() {
+								$('#d_1').animate({
+									width: '5px',
+									height: '5px'
+								});
+
+							});
+						} else if($(this).text() == '胸大') {
+							$('#d_2').show().animate({
+								width: '8px',
+								height: '8px'
+							}, 100, function() {
+								$('#d_2').animate({
+									width: '5px',
+									height: '5px'
+								});
+							});
+						} else if($(this).text() == '腰粗') {
+							$('#d_3').show().animate({
+								width: '8px',
+								height: '8px'
+							}, 100, function() {
+								$('#d_3').animate({
+									width: '5px',
+									height: '5px'
+								});
+							});;
+						} else if($(this).text() == '宽臀') {
+							$('#d_4').show().animate({
+								width: '8px',
+								height: '8px'
+							}, 100, function() {
+								$('#d_4').animate({
+									width: '5px',
+									height: '5px'
+								});
+							});;
+						} else if($(this).text() == '窄臀') {
+							$('#d_5').show().animate({
+								width: '8px',
+								height: '8px'
+							}, 100, function() {
+								$('#d_5').animate({
+									width: '5px',
+									height: '5px'
+								});
+							});;
+						} else if($(this).text() == '平臀') {
+							$('#d_6').show().animate({
+								width: '8px',
+								height: '8px'
+							}, 100, function() {
+								$('#d_6').animate({
+									width: '5px',
+									height: '5px'
+								});
+							});;
+						} else if($(this).text() == '肩宽') {
+							$('#d_7').show().animate({
+								width: '8px',
+								height: '8px'
+							}, 100, function() {
+								$('#d_7').animate({
+									width: '5px',
+									height: '5px'
+								});
+							});;
+						} else if($(this).text() == '上臂粗') {
+							$('#d_8').show().animate({
+								width: '8px',
+								height: '8px'
+							}, 100, function() {
+								$('#d_8').animate({
+									width: '5px',
+									height: '5px'
+								});
+							});;
+						} else if($(this).text() == '腹部突出') {
+							$('#d_9').show().animate({
+								width: '8px',
+								height: '8px'
+							}, 100, function() {
+								$('#d_9').animate({
+									width: '5px',
+									height: '5px'
+								});
+							});;
+						} else if($(this).text() == '大腿粗') {
+							$('#d_10').show().animate({
+								width: '8px',
+								height: '8px'
+							}, 100, function() {
+								$('#d_10').animate({
+									width: '5px',
+									height: '5px'
+								});
+							});;
+						} else if($(this).text() == '小腿粗') {
+							$('#d_11').show().animate({
+								width: '8px',
+								height: '8px'
+							}, 100, function() {
+								$('#d_11').animate({
+									width: '5px',
+									height: '5px'
+								});
+							});;
+						} else if($(this).text() == '腿不直') {
+							$('#d_12').show().animate({
+								width: '8px',
+								height: '8px'
+							}, 100, function() {
+								$('#d_12').animate({
+									width: '5px',
+									height: '5px'
+								});
+							});;
+						}
+
+					} else {
+						$(this).css('background-image', 'url("img/7_k@2x.png")');
+						if($(this).text() == '脖子短') {
+							$('#d_1').hide();
+						} else if($(this).text() == '胸大') {
+							$('#d_2').hide();
+						} else if($(this).text() == '腰粗') {
+							$('#d_3').hide();
+						} else if($(this).text() == '宽臀') {
+							$('#d_4').hide();
+						} else if($(this).text() == '窄臀') {
+							$('#d_5').hide();
+						} else if($(this).text() == '平臀') {
+							$('#d_6').hide();
+						} else if($(this).text() == '肩宽') {
+							$('#d_7').hide();
+						} else if($(this).text() == '上臂粗') {
+							$('#d_8').hide();
+						} else if($(this).text() == '腹部突出') {
+							$('#d_9').hide();
+						} else if($(this).text() == '大腿粗') {
+							$('#d_10').hide();
+						} else if($(this).text() == '小腿粗') {
+							$('#d_11').hide();
+						} else if($(this).text() == '腿不直') {
+							$('#d_12').hide();
+						}
+					}
+
+				});
+			</script>
+		</div>
+		<footer>
+			<div class="next" onclick="open_fenggeceshi8();">
+				<img src="img/next@2x.png" />
+			</div>
+
+		</footer>
+		<div class="yinDaoy imgSeven" data-int='0'></div>
+	</body>
+
+</html>

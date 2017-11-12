@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>风格测试</title>
+		<link href="css/style_fenggeceshi.css?time=2017072509.css" rel="stylesheet">
+		<link href="css/component.css?time=2017072509.css" rel="stylesheet" />
+		<script src="../js/jquery-1.11.1.min.js?time=2017072509"></script>
+		<script type="text/javascript" src="../Layer/layer.js?time=2017072509"></script>
+		<script type="text/javascript" src="js/fenggecs.js?time=2017072509"></script>
+			<script type="text/javascript" charset="utf-8">
+			$(function() {
+				//			$(".portrait  img").attr('src',localStorage.UserPhoto);
+				$(".portrait").click(function() {
+					location.href = '../shezhi.html';
+				})
+				var flag = true;
+				$('.man').bind('click', function() {
+					$(this).addClass('active');
+					$('.women').removeClass('active');
+					$('.man').find('img').replaceWith("<img src='img/m_pre@2x.png'/>");
+					$('.women').find('img').replaceWith("<img src='img/w@2x.png'/>");
+				});
+				$('.women').bind('click', function() {
+					$(this).addClass('active');
+					$('.man').removeClass('active');
+					$('.man').find('img').replaceWith("<img src='img/m@2x.png'/>");
+					$('.women').find('img').replaceWith("<img src='img/w_@2x.png'/>");
+				});				
+			})
+			function open_fenggeceshi2() {
+					if($('.man').hasClass("active")) {
+						window.localStorage.setItem('Gender', 1);
+						location.href='fenggeceshi_2.html'
+					} else if($('.women').hasClass("active")) {
+						window.localStorage.setItem('Gender', 0);
+						location.href='fenggeceshi_2.html';					
+					} else {
+						layer.msg("请选择您的性别");
+					}
+				}
+		</script>
+	
+	</head>
+	<body>
+		<div id="st-container" class="st-container">
+			<div class="st-pusher">
+				<header id="st-trigger-effects" class="column">
+					<div class="back">
+						<a href="../shezhi.html"><img src="img/return@2x.png" alt="">返回</a>
+					</div>
+					<p>测试报告</p>
+					<div class="progress">
+						<li><img src="img/d1_pre@2x.png" /></li>
+						<li><img src="img/d2@2x.png" /></li>
+						<li><img src="img/d3@2x.png" /></li>
+						<li><img src="img/d4@2x.png" /></li>
+						<li><img src="img/d5@2x.png" /></li>
+						<li><img src="img/d6@2x.png" /></li>
+						<li><img src="img/d7@2x.png" /></li>
+						<li><img src="img/d8@2x.png" /></li>
+					</div>
+				</header>
+				<div class="contain">
+					<div class="man">
+						<img src="img/m@2x.png" />
+						<p>男</p>
+					</div>
+					<div class="women">
+						<img src="img/w@2x.png" />
+						<p>女</p>
+					</div>
+				</div>
+				<footer>
+					<div class="next" onclick="open_fenggeceshi2();">
+						<img src="img/next@2x.png" />
+					</div>
+				</footer>
+			</div>
+		</div>
+		<div class="yinDaoy imgOne" data-int='0'></div>
+	</body>
+
+</html>

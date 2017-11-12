@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>登陆</title>
+		<link rel="stylesheet" href="../css/media.css-750.css?time=2017072509.css" />
+		<link rel="stylesheet" type="text/css" href="../css/suoysp.css?time=2017072509.css" />
+		<link rel="stylesheet" type="text/css" href="css/activity.css" />
+	</head>
+<style>
+	.activecontent{
+		background: url(img/qixi-beijing.png);
+		background-repeat: no-repeat;
+		background-size:cover;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	.imgbox{
+		padding:0 15px;
+		position: absolute;
+		top:52%;
+		text-align: center;
+	}
+	.active_img{
+		width: 100%;
+	}
+	.Pickup{
+		z-index: 99;
+		width:20%;
+		left:50%;
+		bottom: -94%;
+		transform: translate(-50%,-50%);
+		position: absolute;
+	}
+	
+	@keyframes marquee {
+    0%{right:0}
+    100%{right: -200%}
+   }
+   .decoration{
+   	z-index: 1;
+   		position: absolute;
+   		bottom: 0;
+   		height: 20%;
+   		width: 200%;
+   		overflow: hidden;
+    -webkit-animation: marquee 8s linear infinite;
+    animation: marquee 8s linear infinite;
+   		
+   }
+   .decoration img:nth-child(1){
+   	width: 30px;
+   	height: 20px;
+   	position: absolute;
+	top:8%;
+	left:10%;
+   }
+   .decoration img:nth-child(2){
+   	width: 50px;
+   	height: 40px;
+   	position: absolute;
+	top:15%;
+	left:30%;
+   }
+   .decoration img:nth-child(3){
+   	width: 70px;
+   	height: 60px;
+   	position: absolute;
+	top:55%;
+	left:50%;
+   }
+    .decoration img:nth-child(4){
+   	width: 100px;
+   	height: 60px;
+   	position: absolute;
+	top:65%;
+	left:20%;
+   }
+</style>
+	<body>
+      
+	  
+		<div class="activecontent">
+					<div class="imgbox">
+							<img class="active_img" src="img/qixi-youhuiquan.png" alt="" />
+							<img  class="Pickup" id="Pickup" src="img/qixi-dianjilingqu.png" alt="" />
+					</div>
+					<div class="decoration">
+						<img src="img/qixi-lianhuadeng.png" alt="" />
+						<img src="img/qixi-lianhuadeng.png" alt="" />
+						<img src="img/qixi-lianhuadeng.png" alt="" />
+						<img src="img/qixi-lianhuadeng.png" alt="" />
+					</div>
+				
+		</div>
+	</body>
+
+	<script src="../js/jquery-1.11.1.min.js?time=2017072509"></script>
+	<script src="../js/all.js?time=20170801"></script></script>
+	<script src="../Layer/layer.js"></script></script>
+	<script type="text/javascript">
+document.querySelector('body').addEventListener('touchmove', function (ev) {
+   event.preventDefault();
+});
+		$("#Pickup").click(function(){
+		debugger
+		var num=localStorage.activityId;
+		
+				$.get("https://api.0-fashion.com/Coupon/get",
+				{
+					    CouponNum:num,
+						MemberId: localStorage.MemberId,
+						U_Num: localStorage.u_num,
+				},function(da){
+						if(da.ResultType==3){
+							layer.msg(da.Message+",请在个人设置页查看~")
+							$(".Pickup").attr("src","img/qixi-yilingqu.png");
+						}else{
+							layer.msg(da.Message)
+						}
+				})
+			
+		
+		})
+	</script>
+
+</html>

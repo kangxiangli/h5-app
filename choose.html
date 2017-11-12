@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<!-- Link Swiper's CSS -->
+		<link rel="stylesheet" href="css/swiper.css">
+		<!--  styles -->
+		<link rel="stylesheet" href="css/choose_css.css" />
+		<link rel="stylesheet" href="css/media.css-750.css?time=2017072509.css" />
+		<link rel="stylesheet" href="css/all.css?time=2017072509.css" />
+		<link rel="stylesheet" href="css/suoysp.css?time=2017072509.css" />
+		<script>
+			/**
+			 * Created by Administrator on 2017/9/4.
+			 */
+			//			(function(a, b) {
+			//				function fontsize() {
+			//					b.documentElement.style.fontSize = 20 * b.documentElement.clientWidth / 320 + 'px';
+			//				}
+			//				fontsize();
+			//				a.addEventListener('resize', fontsize, false);
+			//			})(window, document);
+		</script>
+	</head>
+
+	<body class="bgBody">
+		<div class="yuyueHder">
+			<div class="backYuy" onclick="window.history.go(-1)">
+				<img src="img/singleitem/back@2x.png" alt="" />返回
+			</div>
+			<p>选择方案</p>
+		</div>
+		<nav class="sitenav">
+			<div class="box_left  rejectAllPlans"> <span>都不喜欢</span></div>
+			<div class="box_right confirmPlan" id="confirmPlan"><span id="confirmPlanspan">预约此套</span></div>
+		</nav>
+
+		<!-- Swiper -->
+		<div class="swiper-container swiper-container_box">
+			<div class="swiper-wrapper swiper-box">
+
+			</div>
+			<!-- Add Pagination -->
+			<div class="swiper-pagination"></div>
+		</div>
+
+		<div class="data_box" id="data_box">
+			<!-- Swiper -->
+			<span class="time_txt">请选择预约时间</span>
+			<div class="box_center">
+				<div class="swiper-container swiper-container-left">
+
+					<div class="swiper-wrapper swiper-data-left">
+
+					</div>
+
+				</div>
+				<div class="swiper-container swiper-container-right">
+					<div class="swiper-wrapper swiper-data-right">
+
+					</div>
+
+				</div>
+			</div>
+
+			<span class="time_txt confirm_btn">确定</span>
+		</div>
+		<!-- Swiper JS -->
+		<script src="js/swiper.min.js"></script>
+		<script src="js/jquery-2.1.1.min.js"></script>
+		<script src="Layer/layer.js"></script>
+		<script type="text/javascript">
+			var plandId=0;
+			(function($) {
+				$.tools = {
+					dateFormat: function(value, format, loc) {
+						var time = {};
+						var datetime = new Date();
+						if(typeof(value) == "string") {
+							var timestamp = value.replace(/\/Date\((\d+)\)\//gi, '$1');
+							if(format == undefined || format.length <= 0) {
+								format = "yyyy年MM月dd日";
+							}
+							datetime.setTime(timestamp);
+						} else {
+							datetime = value;
+						}
+						time.Year = datetime.getFullYear();
+						time.TYear = ("" + time.Year).substr(2);
+						time.Month = datetime.getMonth() + 1;
+						time.TMonth = time.Month < 10 ? "0" + time.Month : time.Month;
+						time.Day = datetime.getDate();
+						time.TDay = time.Day < 10 ? "0" + time.Day : time.Day;
+						time.Hour = datetime.getHours();
+						time.THour = time.Hour < 10 ? "0" + time.Hour : time.Hour;
+						time.hour = time.Hour < 13 ? time.Hour : time.Hour - 12;
+						time.Thour = time.hour < 10 ? "0" + time.hour : time.hour;
+						time.Minute = datetime.getMinutes();
+						time.TMinute = time.Minute < 10 ? "0" + time.Minute : time.Minute;
+						time.Second = datetime.getSeconds();
+						time.TSecond = time.Second < 10 ? "0" + time.Second : time.Second;
+						time.Millisecond = datetime.getMilliseconds();
+						time.Week = datetime.getDay();
+
+						var MMMArrEn = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+						var MMMArr = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
+						var WeekArrEn = ["Sun", "Mon", "Tue", "Web", "Thu", "Fri", "Sat"];
+						var WeekArr = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+
+						var oNumber = time.Millisecond / 1000;
+
+						if(format != undefined && format.replace(/\s/g, "").length > 0) {
+							if(loc != undefined && loc == "en") {
+								MMMArr = MMMArrEn.slice(0);
+								WeekArr = WeekArrEn.slice(0);
+							}
+							format = format
+								.replace(/yyyy/ig, time.Year)
+								.replace(/yyy/ig, time.Year)
+								.replace(/yy/ig, time.TYear)
+								.replace(/y/ig, time.TYear)
+								.replace(/MMM/g, MMMArr[time.Month - 1])
+								.replace(/MM/g, time.TMonth)
+								.replace(/M/g, time.Month)
+								.replace(/dd/ig, time.TDay)
+								.replace(/d/ig, time.Day)
+								.replace(/HH/g, time.THour)
+								.replace(/H/g, time.Hour)
+								.replace(/hh/g, time.Thour)
+								.replace(/h/g, time.hour)
+								.replace(/mm/g, time.TMinute)
+								.replace(/m/g, time.Minute)
+								.replace(/ss/ig, time.TSecond)
+								.replace(/s/ig, time.Second)
+								.replace(/fff/ig, time.Millisecond)
+								.replace(/ff/ig, oNumber.toFixed(2) * 100)
+								.replace(/f/ig, oNumber.toFixed(1) * 10)
+								.replace(/EEE/g, WeekArr[time.Week]);
+						} else {
+							format = time.Year + "-" + time.Month + "-" + time.Day + " " + time.Hour + ":" + time.Minute + ":" + time.Second;
+						}
+						return format;
+					},
+					getOneDay: function(day, format) {
+						//获取前后某一天时间
+						if(isNaN(day)) {
+							var daytemp = parseInt(day);
+							if(isNaN(daytemp)) {
+								throw new TypeError("getOneDay,参数无效");
+							}
+							day = daytemp;
+						}
+						var sdate = new Date().getTime();
+						var edate = new Date(sdate + (day * 24 * 60 * 60 * 1000));
+						edate = this.dateFormat(edate, format || "yyyy-MM-dd");
+						return edate;
+					}
+				}
+
+				//Initialize Swiper 
+				var host = 'https://api.0-fashion.com';
+				
+				//  加载页面		
+				$.ajax({
+					type: "POST",
+					url: host + '/api/members/appointment/getPlans',
+					data: {
+						MemberId: localStorage.MemberId,
+						U_Num: localStorage.u_num,
+						Id: localStorage.yuyueId,
+					},
+					success: function(da) {
+						if(da.ResultType == 3) {
+							var data = da.Data;
+							planDetail(data);
+					var swiper = new Swiper('.swiper-container_box', {
+					pagination: '.swiper-pagination',
+					effect: 'coverflow',
+					grabCursor: true,
+					preloadImages: true,
+					centeredSlides: true,
+					longSwipesRatio: 0.3,
+					touchRatio: 1,
+					observer: true, //修改swiper自己或子元素时，自动初始化swiper
+					observeParents: true, //修改swiper的父元素时，自动初始化swiper
+					slidesPerView: 1,
+					loop: false,
+					freeMode: false,
+					spaceBetween: 20,
+					coverflow:{
+						slideShadows:"false"
+					},
+					onInit: function(swiper) {
+						plandId=$(".swiper-slide-active").attr("plandid");
+					},
+					onImagesReady:function(swiper){
+					},
+					onSlideChangeEnd: function(swiper) {
+						plandId=$(".swiper-slide-active").attr("plandid");
+					},
+					onClick: function(swiper) {
+						//						alert('你点了Swiper');
+					}
+				});
+
+						}else{
+							layer.msg(da.Message)
+						}
+					}
+				})
+
+				function planDetail(data) {
+					$.each(data, function(index, item) {
+						var CoverImg = item.CoverImg;
+						var _url = "https://www.0-fashion.com" + CoverImg;
+						var str =" <div class='swiper-slide' plandId="+item.Id+">"
+										+"<img class='swiper-slide swiper-slide_img ' src='" + _url + "' alt=''  />"
+									+"</div>";
+						$(".swiper-box").append(str)
+					});
+				}
+				//都不喜欢
+				$(".rejectAllPlans").bind("click.rejectAllPlans", rejectAllPlans);
+
+				function rejectAllPlans() {
+					$.ajax({
+						type: "POST",
+						url: host + '/api/members/appointment/rejectAllPlans',
+						data: {
+							MemberId: localStorage.MemberId,
+							U_Num: localStorage.u_num,
+							Id: localStorage.yuyueId
+						}, 
+						success: function(da) {
+							if(da.ResultType == 3) {
+								var data = da.Data;
+								layer.msg(da.Message)
+							}else{
+								layer.msg(da.Message)
+							}
+						}
+					})
+				}
+
+				//预约此套
+				var swiperL = new Swiper('.swiper-container-left', {
+					//					effect: 'coverflow',
+					slideShadows: false,
+					grabCursor: true,
+					centeredSlides: true,
+					direction: 'vertical',
+					slidesPerView: 'auto',
+					observer: true,
+					coverflow: {
+						slideShadows: true,
+						touchRatio: 1,
+						observer: true, //修改swiper自己或子元素时，自动初始化swiper
+						observeParents: true, //修改swiper的父元素时，自动初始化swiper
+						slidesPerView: 1,
+						loop: true,
+						freeMode: false,
+					},
+					onSlideChangeEnd: function(swiper) {
+						var index = swiper.activeIndex;
+						$(".swiper-container-left .swiper-slide-active").css({
+							"color": "#000",
+							"fontWeight": 700
+						}).siblings().css("color", "rgba(0,0,0,0.5)")
+					},
+					onTransitionEnd: function(swiper) {
+					},
+					onClick: function(swiper) {
+					}
+				});
+				var swiperR = new Swiper('.swiper-container-right', {
+					//					effect: 'coverflow',
+					grabCursor: true,
+					slideShadows: false,
+					centeredSlides: true,
+					direction: 'vertical',
+					slidesPerView: 'auto',
+					observer: true,
+					coverflow: {
+						rotate: 50,
+						stretch: 0,
+						depth: 100,
+						modifier: 1,
+						slideShadows: true,
+						paginationClickable: true,
+						longSwipesRatio: 0.3,
+						touchRatio: 1,
+						observer: true, //修改swiper自己或子元素时，自动初始化swiper
+						observeParents: true, //修改swiper的父元素时，自动初始化swiper
+						slidesPerView: 1,
+						loop: true,
+						freeMode: false,
+						spaceBetween: 20
+					},
+					onSlideChangeEnd: function(swiper) {
+						var index = swiper.activeIndex;
+						$(".swiper-container-right .swiper-slide-active").css({
+							"color": "#000",
+							"fontWeight": 700
+						}).siblings().css("color", "rgba(0,0,0,0.5)")
+					},
+					onTransitionEnd: function(swiper) {
+					},
+				});
+				$(".confirmPlan").bind("click.confirmPlan", confirmPlan);
+
+				function confirmPlan() {
+					$(".data_box").css("display", "block");
+					//年
+					var daycount = 15;
+					for(var i = 1; i <= daycount; i++) {
+						var str = "";
+						str = "<div class='swiper-slide '>" + $.tools.getOneDay(i) + "</div>";
+						$(".swiper-data-left").append(str)
+					}
+					//月
+					for(var i = 9; i < 23; i++) {
+						// var i = i < 10 ? "0" + i : i;                    
+						str = "<div class='swiper-slide'>" + i + ":00" + "-" + (i + 1) + ":00" + "</div>";
+						$(".swiper-data-right").append(str)
+					}
+				}
+				//点击确定
+
+				function fn_dot(dot) {
+					return Number(dot) < 10 ? "0" + dot : dot;
+				}
+				$(".confirm_btn").click(function() {
+					var left_time = $(".swiper-container-left .swiper-slide-active").html();
+					var right_time = $(".swiper-container-right .swiper-slide-active").html();
+					var right_time_befor = right_time.split("-")[0] + ":00";
+					var right_time_dot = right_time_befor.split(":")[0];
+					var a = right_time_befor.split(":")[1];
+					fn_dot(right_time_dot)
+					var right_time_after = right_time.split("-")[1] + ":00";
+					var end = left_time + " " + right_time_after;
+					var start = left_time + " " + fn_dot(right_time_dot) + ":" + a + ":00"
+//					var planId = window.localStorage.getItem("planArr");//不通过这个获取，而是渲染到页面中通过swiper的滑动获取
+					$.ajax({
+						type: "POST",
+						url: host + '/api/members/appointment/confirmPlans',
+						data: {
+							MemberId: localStorage.MemberId,
+							U_Num: localStorage.u_num,
+							id: localStorage.yuyueId,
+							planId: plandId,
+							start: start,
+							end: end
+						},
+						success: function(da) {
+							if(da.ResultType == 3) {
+								var data = da.Data;
+								$(".data_box").hide();
+								location.href="yuyue.html";
+							} else {
+								layer.msg(da.Message);
+							}
+						}
+					})
+
+				})
+
+			})(jQuery);
+		</script>
+		<script type="text/javascript">
+			//点击其他地方隐藏databox
+			window.onload = function() {
+				var obj = document.getElementById("data_box");
+				var oBtn = document.getElementById('confirmPlan');
+				var oBtn2 = document.getElementById('confirmPlanspan');
+				document.onclick = function(event) {
+					var e = event || window.event; //兼容ie和非ie的event
+					var aim = e.srcElement || e.target; //兼容ie和非ie的事件源
+					if(e.srcElement) {
+						var aim = e.srcElement;
+						if(aim != obj && aim != oBtn && aim != oBtn2) {
+							obj.style.display = "none";
+						}
+					} else {
+						var aim = e.target;
+						if(aim != oBtn && aim != obj) {
+							obj.style.display = "none";
+						}
+					}
+				}
+			}
+		</script>
+	</body>
+
+</html>

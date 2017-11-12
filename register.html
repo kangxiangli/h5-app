@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>注册</title>
+		<link rel="stylesheet" href="css/media.css-750.css?time=2017072509.css" />
+		<link rel="stylesheet" type="text/css" href="css/suoysp.css?time=20170801.css" />
+		<link rel="stylesheet" href="css/register.css?time=2017072509.css" />
+	</head>
+
+	<body class="bgBody">
+		<!--零时尚标题-->
+		<div class="fashion_box">
+			<img src="img/public/biglogo@2x .png" alt="" />
+		</div>
+		<!--注册框-->
+		<div class="register_box">
+			<ul class="txt_block">
+				<li><img class="phone" src="img/zhuce/sj@2x.png" alt="" /></li>
+				<li class="txt_input"><input class="txt_phone" type="text" placeholder="输入手机号码" /></li>
+				<li class="register_li">
+					<!--<input type="button" name="" id="verification_code" value="获取验证码"/>-->
+					<div id="verification_code">获取验证码</div>
+					<!--<div class="verification_shade"></div>-->
+				</li>
+				<img src="img/login/clear@2x.png" class="clear clearPhone" alt="" />
+			</ul>
+			<ul class="txt_block">
+				<li><img class="maill" src="img/zhuce/xx@2x.png" alt="" /></li>
+				<li class="txt_input"><input type="number" class="verification_code" placeholder="输入验证码信息" /></li>
+				<img src="img/login/clear@2x.png" class="clear" alt="" />
+			</ul>
+			<ul class="txt_block">
+				<li><img class="passd" src="img/zhuce/mm@2x.png" alt="" /></li>
+				<li class="txt_input"><input class="padwd" type="password" placeholder="输入密码" /></li>
+				<img src="img/login/clear@2x.png" class="clear" alt="" />
+			</ul>
+		</div>
+		<!--注册登录按钮-->
+		<div id="register_login">注册并登录</div>
+		<p class="active_area">返回登录</p>
+		<!--提示框-->
+		<div class="dialog_box">
+			<p>温馨提示</p>
+			<span></span>
+			<div class="close_dialog">确定</div>
+		</div>
+
+		<div>
+
+		</div>
+	</body>
+	<script src="js/jquery-1.11.1.min.js?time=2017072509"></script>
+	<script src="js/all.js?time=20170801"></script>
+	<script>
+		$(function() {
+			$(".active_area").click(function() {
+				window.location.href = 'login.html';
+			});
+			$(".txt_phone,.verification_code,.padwd").focus(function() {
+				shouCler(this);
+			});
+
+			function shouCler(obj) {
+				$('.clear').hide();
+				$(obj).parent().siblings(".clear").show();
+			}
+
+			$(".clear").click(function() {
+				var th = $(this).siblings().children().val('');
+			});
+
+			var countdown = 60;
+
+			function settime() {
+				if(countdown == 0) {
+					$("#verification_code").html('获取验证码').css("background", "rgb(232,91,91)").css("color", '#fff').css("z-index", '1');
+				} else {
+					$("#verification_code").html('重新发送(' + countdown + ')').css("background", "#000").css("color", 'darkgrey').css("z-index", '-1');
+					countdown--;
+				}
+				setTimeout(function() {
+					settime();
+				}, 1000)
+			}
+			//发送验证码
+			$(".register_li").click(function() {
+				$("#verification_code").css("background-color", '#901C1C').css('color','#988E8E');
+				setTimeout(function() {
+					$("#verification_code").css("background-color", 'rgb(232,91,91)').css('color','#fff');
+				}, 300);
+				$(".clear").hide();
+				var txt_phone = $(".txt_phone").val();
+				$.ajax({
+					type: "post",
+					url: host + "/api/message/verifycode/get",
+					data: {
+						PhoneNumber: txt_phone,
+						VerifyCodeType: 0
+					},
+					success: function(data) {
+						if(data.ResultType == 3) {
+							settime();
+							showDiag("验证码已发送");
+						} else {
+							showDiag(data.Message);
+						}
+					}
+				});
+			});
+
+			//登陆
+			$("#register_login").click(function() {
+				var txt_phone = $(".txt_phone").val();
+				var verification_code = $(".verification_code").val();
+				var padwd = $(".padwd").val();
+				$.ajax({
+					type: "post",
+					url: host + "/api/members/member/register",
+					data: {
+						PhoneNumber: txt_phone,
+						VerifyCode: verification_code,
+						PassWord: padwd
+					},
+					success: function(data) {
+						if(data.ResultType == 3) {
+							$.ajax({
+								type: "post",
+								url: host + '/api/members/member/login',
+								data: {
+									PhoneNumber: txt_phone,
+									PassWord: padwd
+								},
+								success: function(data) {
+									if(data.ResultType == 3) {
+										localStorage.MemberId = data.Data.MemberId;
+										localStorage.u_num = data.Data.U_Num;
+										window.location.href = 'index.html';
+									} else {
+										showDiag(data.Message);
+									}
+								}
+							});
+						} else {
+							showDiag(data.Message);
+						}
+					}
+				});
+			});
+		});
+	</script>
+
+</html>

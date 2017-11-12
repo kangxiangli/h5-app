@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>测试报告</title>
+		<link href="css/style_fenggeceshi_tap6-8.css?time=2017072509.css" rel="stylesheet">
+		<script src="../js/jquery-1.11.1.min.js?time=2017072509"></script>
+		<script src="../Layer/layer.js?time=2017072509"></script>
+		<script type="text/javascript" src="js/fenggecs.js?time=2017072509"></script>
+		<script type="text/javascript">			
+			$.ajax({
+				type: "post",
+				url:host + '/api/members/memberinfo/GetMemberAttr',
+				data: {
+					MemberId: localStorage.MemberId,
+					U_Num: localStorage.u_num
+				},
+				success: function(data) {
+					if(data.ResultType == 3) {
+						var dataTX = data.Data.Attr_TiXing[0];
+						var dataTex = data.Data.Attr_TeXing[0];
+						$.each(dataTX.AttributeImgs, function(i,imgs) {
+							$(".Imagecontain").append('<img src='+imgs+'>');
+						});
+						$.each(dataTex.AttributeImgs, function(i,imgt) {
+							$(".Imagecontain").append('<img src='+imgt+'>');
+						});
+					}
+				}
+			})
+		</script>
+	</head>
+
+	<body>
+		<img src="img/dbg.png" style="width: 100%; height: 100%; z-index: -100;position: fixed;" />
+		<header id="st-trigger-effects" class="column">
+			<div class="back">
+				<a href="javascript:void(0);"onclick="window.history.go(-1)"><img src="img/return@2x.png" alt="">返回</a>
+			</div>
+			<p>测试报告</p>
+		</header>
+		<div class="Imagecontain" style="height: 100%;">
+		</div>
+	</body>
+
+</html>

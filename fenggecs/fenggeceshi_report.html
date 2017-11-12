@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>测试报告</title>
+		<link href="css/style_fenggeceshi_tap6-8.css?time=2017072509.css" rel="stylesheet">
+		<script src="../js/jquery-1.11.1.min.js?time=2017072509"></script>
+		<script type="text/javascript" src="js/fenggecs.js?time=2017072509"></script>
+		<script src="../Layer/layer.js?time=2017072509"></script>
+	</head>
+	<script>
+		$.ajax({
+			type: "post",
+			url: host + '/api/members/memberinfo/GetMemberAttr',
+			data: {
+				MemberId: localStorage.MemberId,
+				U_Num: localStorage.u_num
+			},
+			success: function(data) { 
+//				console.log(data)
+				if(data.ResultType == 3) {
+					console.log(JSON.stringify(data));
+					var data = data.Data.MemberFigure;
+					$("#shengao").html(data.Height);
+					$("#tizhong").html(data.Weight);
+					$(".FigureType").html(data.FigureType);
+					switch(data.FigureType) {
+						case "H":
+							$(".FigureTypeImg").attr("src", "img/6_5h_t@2x.png");
+							break;
+						case "O":
+							$(".FigureTypeImg").attr("src", "img/6_6o_t@2x.png");
+							break;
+						case "X":
+							$(".FigureTypeImg").attr("src", "img/6_1x_t@2x.png");
+							break;
+						case "I":
+							$(".FigureTypeImg").attr("src", "img/6_2i_t@2x.png");
+							break;
+						case "A":
+							$(".FigureTypeImg").attr("src", "img/6_3a_t@2x.png");
+							break;
+						case "V":
+							$(".FigureTypeImg").attr("src", "img/6_4v_t@2x.png");
+							break;
+
+					}
+					$.each(data.FigureDes, function(i, itemG) {
+						console.log("itemG:" + itemG);
+						$(".FigureDes_details").each(function(i) {
+							if($(this).html() == itemG) {
+								$(this).parent().show();
+							}
+						})
+
+					})
+				}
+			}
+		});
+
+		function aginTsest() {
+			window.location.href = "fenggeceshi_1.html";
+		}
+	</script>
+
+	<body>
+		<img src="img/dbg.png" style="width: 100%; height: 100%; z-index: -100;position: fixed;" />
+		<header id="st-trigger-effects" class="column">
+			<div class="back">
+				<a href="../shezhi.html"><img src="img/return@2x.png" alt="">返回首页</a>
+			</div>
+			<p>测试报告</p>
+			<a id="modification" href="javascript:void(0)" onclick="aginTsest()">重新测试</a>
+		</header>
+
+		<div class="contain" style="height: 100%;">
+			<div class="man_icon">
+				<div class="FigureType"></div>
+				<img class="FigureTypeImg" src="" />
+
+				<div class="boziduan FigureDes">
+					<div class="L_title FigureDes_details">脖子短</div>
+					<div class="point_r"></div>
+				</div>
+				<div class="xiongda FigureDes">
+					<div class="L_title FigureDes_details">胸大</div>
+					<div class="point_r"></div>
+				</div>
+				<div class="yaocu FigureDes">
+					<div class="L_title FigureDes_details">腰粗</div>
+					<div class="point_r"></div>
+				</div>
+				<div class="kuantun FigureDes">
+					<div class="L_title FigureDes_details">宽臀</div>
+					<div class="point_r"></div>
+				</div>
+				<div class="zhaitun FigureDes">
+					<div class="L_title FigureDes_details">窄臀</div>
+					<div class="point_r"></div>
+				</div>
+				<div class="pingtun FigureDes">
+					<div class="L_title FigureDes_details">平臀</div>
+					<div class="point_r"></div>
+				</div>
+				<div class="jiankuan FigureDes">
+					<div class="R_title FigureDes_details">肩宽</div>
+					<div class="point_l"></div>
+				</div>
+				<div class="shangbicu FigureDes">
+					<div class="R_title FigureDes_details">上臂粗</div>
+					<div class="point_l"></div>
+				</div>
+				<div class="fubutuchu FigureDes">
+					<div class="R_title FigureDes_details">腹部突出</div>
+					<div class="point_l"></div>
+				</div>
+				<div class="datuichu FigureDes">
+					<div class="R_title FigureDes_details">大腿粗</div>
+					<div class="point_l"></div>
+				</div>
+				<div class="xiaotuicu FigureDes">
+					<div class="R_title FigureDes_details">小腿粗</div>
+					<div class="point_l"></div>
+				</div>
+				<div class="tuibuzhi FigureDes">
+					<div class="L_title FigureDes_details">腿不直</div>
+					<div class="point_r"></div>
+				</div>
+
+			</div>
+			<div class="shengao">
+				<img class="ruler_2" src="img/e3_vertical_ruler@2x.png">
+				<img class="ruler_jian_2" src="img/e3_vertical_arrow@2x.png">
+				<span>身高</span>
+				<div id="shengao"></div>
+				<div class="shengaoDanwei">cm</div>
+			</div>
+			<div class="tizhong">
+				<img class='ruler' src="img/e3_transverse_ruler@2x.png" />
+				<img class='ruler_jian' src="img/e3_transverse_arrow@2x.png" />
+				<span>体重</span>
+				<div id="tizhong"></div>
+				<div class="tizhongDanwei">kg</div>
+			</div>
+			<div class="details" style="position: absolute;bottom: 0;height: 27%;">
+			    <p style="width: 50%;height: 100%;position: absolute;left:4%;top:28%" ><img src="img/xiangqingbanceshi.png" alt=""/><a  style=" position: absolute;left:10%;top:4%;color:#fff" href="fenggeceshi_xiangxi.html">详情版风格测试</a></p>
+				<p style="width: 50%;height: 100%;position: absolute;right:3%;top:28%"><img src="img/ceshibaogao.png" alt="" /><a  style=" position: absolute;right:20%;top:9%;color:#fff" href="fenggeceshi_report_details.html">查看报告<a/></p>
+			</div>
+		</div>
+
+	</body>
+
+</html>

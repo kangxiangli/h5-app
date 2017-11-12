@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, width=device-width">
+	<meta name="screen-orientation" content="portrait">
+    <title>躲开星球！！</title>
+    <link rel="stylesheet" type="text/css" href="static/css/index.css">
+    <script src="static/js/zepto.min.js"></script>
+</head>
+<body>
+<div id="container">
+	
+	<div id="guidePanel"></div>
+	<div id="gamepanel">
+		<div class="score-wrap">
+            <div class="heart"></div>
+            <input id="score" type="text" value="00:00">
+        </div>
+		<canvas id="stage" width="320" height="568"></canvas>
+	</div>
+	<div id="gameoverPanel"></div>
+	<div id="resultPanel">
+        <div class="weixin-share"></div>
+        <a href="javascript:void(0)" class="replay"></a>
+        <div class="lastCount">还可以玩<span id="lastCount">0</span>次哦~</div>
+        <div id="fenghao"></div>
+        <div id="scorecontent">
+        	您坚持了<span id="stime" class="lighttext">null</span>秒,获得了<span id="sscore" class="lighttext"></span>个积分<br>超过了<span id="suser" class="lighttext">0%</span>的用户！
+        </div>
+        <div class="textc">
+        	<span class="btn1 share">兑换积分</span>
+        	<span class="out" onclick="location='/home/store/shezhi.html'">退出</span>
+        </div>
+	</div>
+</div>
+<script src="/home/store/js/jquery-1.11.1.min.js"></script>
+<script src="static/js/index.js"></script>
+<script src="/home/store/Layer/layer.js"></script>
+</body>
+</html>

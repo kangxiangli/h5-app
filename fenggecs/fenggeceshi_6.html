@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>风格测试</title>
+		<link href="css/style_fenggeceshi_tap6-8.css?time=2017072509.css" rel="stylesheet">
+		<script src="js/swiper.min.js?time=2017072509"></script>
+		<script src="../js/jquery-1.11.1.min.js?time=2017072509"></script>
+		<script type="text/javascript" src="js/fenggecs.js?time=2017072509"></script>
+		<script src="../Layer/layer.js?time=2017072509"></script>
+
+	</head>
+	<script>
+		function open_fenggeceshi7() {
+			var shenxing = $('.swiper-slide-active span').html();
+			window.localStorage.setItem('shenxing', shenxing);
+			var View = window.localStorage.shenxing;
+			console.log(View);
+			if((View == null) || (View == '') || (View == undefined)) {
+				layer.msg("请选择合适身形");
+			} else {
+				window.location.href = "fenggeceshi_7.html";
+			}
+		}
+	</script>
+
+	<body>
+		<img src="img/dbg.png" style="width: 100%; height: 100%; z-index: -100;position: fixed;" />
+		<header id="st-trigger-effects" class="column">
+			<div class="back">
+				<a href="javascript:void(0);" onclick="closeWin(5);"><img src="img/return@2x.png" alt="">返回</a>
+			</div>
+			<p>风格测试</p>
+			<a id="close" href="javascript:void(0)" onclick="return_Launch();"><img src="img/close@2x.png" /></a>
+
+			<div class="progress">
+
+				<li><img src="img/d1_pre@2x.png" /></li>
+				<li><img src="img/d2_pre@2x.png" /></li>
+				<li><img src="img/d3_pre@2x.png" /></li>
+				<li><img src="img/d4_pre@2x.png" /></li>
+				<li><img src="img/d5_pre@2x.png" /></li>
+				<li><img src="img/d6_pre@2x.png" /></li>
+				<li><img src="img/d7@2x.png" /></li>
+				<li><img src="img/d8@2x.png" /></li>
+
+			</div>
+		</header>
+
+		<div class="contain">
+			<div class="tixing">
+				<div class="swiper-container swiper-tixing">
+					<div class="swiper-wrapper warpper_tixing">
+						<div class="swiper-slide slide1">
+							<img class="img_icon" src="img/6_5h@2x.png" />
+							<img class="img_tixingtu" src="img/6_5h_t@2x.png" />
+							<span>H</span>
+							<div class="miaoshu">
+								<p>匀称</p>
+								<p>腰线不太明显</p>
+								<p>优雅干练</p>
+								<p>成熟稳重</p>
+							</div>
+						</div>
+						<div class="swiper-slide slide2">
+							<img class="img_icon" src="img/6_6o@2x.png" />
+							<img class="img_tixingtu" src="img/6_6o_t@2x.png" />
+							<span>O</span>
+							<div class="miaoshu">
+								<p>圆润</p>
+								<p>苦苦寻找大码装</p>
+								<p>气场女王</p>
+								<p>微胖富态</p>
+							</div>
+						</div>
+						<div class="swiper-slide slide3">
+							<img class="img_icon" src="img/6_1x@2x.png" />
+							<img class="img_tixingtu" src="img/6_1x_t@2x.png" />
+							<span>X</span>
+							<div class="miaoshu">
+								<p>腰细</p>
+								<p>腰臀曲线不明显</p>
+								<p>不管胖瘦</p>
+								<p>时尚任性</p>
+							</div>
+						</div>
+						<div class="swiper-slide slide4">
+							<img class="img_icon" src="img/6_2i@2x.png" />
+							<img class="img_tixingtu" src="img/6_2i_t@2x.png" />
+							<span>I</span>
+							<div class="miaoshu">
+								<p>骨质</p>
+								<p>天生丽质难自弃</p>
+								<p>全身骨干</p>
+								<p>衣裳架子</p>
+							</div>
+						</div>
+						<div class="swiper-slide slide5">
+							<img class="img_icon" src="img/6_3a@2x.png" />
+							<img class="img_tixingtu" src="img/6_3a_t@2x.png" />
+							<span>A</span>
+							<div class="miaoshu">
+								<p>显瘦</p>
+								<p>上衣比裤子小一码</p>
+								<p>占尽便宜</p>
+								<p>藏肉显瘦</p>
+							</div>
+						</div>
+						<div class="swiper-slide slide6">
+							<img class="img_icon" src="img/6_4v@2x.png" />
+							<img class="img_tixingtu" src="img/6_4v_t@2x.png" />
+							<span>V</span>
+							<div class="miaoshu">
+								<p>腿长</p>
+								<p>上衣比裤子大一码</p>
+								<p>让人羡慕</p>
+								<p>的大腿长</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Initialize Swiper -->
+				<script>
+					var shenxing = "";
+					var swiper = new Swiper('.swiper-container', {
+						onInit: function(swiper) {},
+						onSlideChangeEnd: function(swiper) {
+							//							shenxing = $('.swiper-slide-active span').html();
+						},
+						effect: 'coverflow',
+						centeredSlides: true,
+						slidesPerView: 3,
+						loop: true,
+						coverflow: {
+							rotate: -50,
+							stretch: 0,
+							depth: 60,
+							modifier: 0.8,
+							slideShadows: false
+						}
+					});
+				</script>
+			</div>
+
+		</div>
+		<footer>
+			<div class="next" onclick="open_fenggeceshi7();">
+				<img src="img/next@2x.png" />
+			</div>
+
+		</footer>
+		<div class="yinDaoy imgSix" data-int='0'></div>
+	</body>
+
+</html>

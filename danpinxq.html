@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>单品详情</title>
+    <link rel="stylesheet" href="css/media.css-750.css?time=2017072509.css" />
+    <link rel="stylesheet" href="css/swiper.css?time=2017072509.css" />
+    <link rel="stylesheet" href="css/suoysp.css?time=2017072509.css" />
+</head>
+<body>
+	<!--衣服详情-->
+	<div class="swiper-container">
+	   <div class="swiper-wrapper">
+	    	
+  		</div>
+  		<div class="swiper-pagination"></div>
+	</div>
+
+	<!--底部菜单-->
+	<ul class="footerNav">
+		<li><img src="img/public/redbac@2x.png" alt="" /></li>
+		<li><i>￥</i> <span>1</span></li>
+		<li class="buyago">去购买</li>
+	</ul>
+		
+</body>
+<script src="js/jquery-1.11.1.min.js?time=2017072509" type="text/javascript"></script>
+<script src="js/swiper.min.js?time=2017072509" type="text/javascript"></script>
+<script type="text/javascript?time=2017072509" src="js/all.js"></script>
+<script type="text/javascript?time=2017072509">
+	$(function(){
+		var dataId = localStorage.dataId;
+		var userNum = localStorage.u_num;
+	$.ajax({
+			type:"post",
+			url:host+"/api/products/product/getproductdetail",
+			async:true,
+			data:{
+				MemberId:MemberId,
+			    U_Num:userNum,
+				ProductId:dataId ,
+			},
+			success:function(data){
+				console.log(data.Data);
+				if(data.ResultType==3){
+					var cons = data.Data.ProductImages;	
+					$.each(cons, function(i,item) {
+						$(".swiper-wrapper").append('<div class="swiper-slide"><img src='+item.ThumbnailSmallPath+'></div>');
+					});
+					$(".footerNav li span").html(cons.TagPrice);
+				} 
+			}
+});
+ var mySwiper = new Swiper('.swiper-container', {
+ 	paginationClickable: true,
+							    longSwipesRatio: 0.3,
+							    touchRatio:1,
+							    observer:true,//修改swiper自己或子元素时，自动初始化swiper
+							    observeParents:true,//修改swiper的父元素时，自动初始化swiper
+                                slidesPerView: 1,
+                                loop : true,
+                                freeMode: false,
+        						spaceBetween:20,
+        						pagination: '.swiper-pagination',
+		})
+	})
+</script>
+</html>

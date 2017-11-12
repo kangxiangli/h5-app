@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>中秋节活动</title>
+		<link rel="stylesheet" href="../css/media.css-750.css?time=2017072509.css" />
+		<link rel="stylesheet" type="text/css" href="../css/suoysp.css?time=2017072509.css" />
+
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+		<script src="../js/jquery-1.11.1.min.js?time=2017072509"></script>
+		<script type="text/javascript" src="js/jquery.slotmachine.js"></script>
+		<script src="../js/all.js?time=20170801"></script>
+		</script>
+		<script src="../Layer/layer.js"></script>
+		</script>
+	</head>
+<style>
+	.open{
+		pointer-events: auto;
+		
+	}
+	.close{
+		pointer-events: none;
+	}
+
+</style>
+	<body>
+		<div class="line">
+			<div class="content ">
+				<div class="content_list">
+					<div id="machine4" class="slotMachine">
+						<div class="slot slot1"></div>
+						<div class="slot slot2"></div>
+						<div class="slot slot3"></div>
+						<div class="slot slot4"></div>
+						<div class="slot slot5"></div>
+						<div class="slot slot6"></div>
+					</div>
+					<div id="machine5" class="slotMachine">
+						<div class="slot slot1"></div>
+						<div class="slot slot2"></div>
+						<div class="slot slot3"></div>
+						<div class="slot slot4"></div>
+						<div class="slot slot5"></div>
+						<div class="slot slot6"></div>
+					</div>
+					<div id="machine6" class="slotMachine">
+						<div class="slot slot1"></div>
+						<div class="slot slot2"></div>
+						<div class="slot slot3"></div>
+						<div class="slot slot4"></div>
+						<div class="slot slot5"></div>
+						<div class="slot slot6"></div>
+					</div>
+				</div>
+			</div>
+			<div class="content_box">
+				<div id="slotMachineButtonShuffle" class="slotMachineButton">抽奖</div>
+				<div id="slotMachineButtonStop" class="slotMachineButton">暂停</div>
+			</div>
+		</div>
+	</body>
+
+	<script>
+		$(document).ready(function() {
+			var host = 'https://api.0-fashion.com';
+			$.ajax({
+				type: "post",
+				url: host + '/api/members/member/login',
+				data: {
+					PhoneNumber: "18515277123",
+					PassWord: "123123"
+				},
+				success: function(data) {
+					if(data.ResultType == 3) {
+						console.log(data.Data);
+						localStorage.MemberId = data.Data.MemberId;
+						localStorage.u_num = data.Data.U_Num;
+						
+					} else {
+//						showDiag(data.Message);
+					}
+				}
+			});
+
+			var machine4 = $("#machine4").slotMachine({
+
+				active: 0,
+
+				delay: 500
+
+			});
+			var machine5 = $("#machine5").slotMachine({
+				active: 1,
+				delay: 500
+			});
+			window.machine6 = $("#machine6").slotMachine({
+				active: 2,
+				delay: 500
+			});
+			$("#slotMachineButtonShuffle").click(function() {
+				machine4.shuffle();
+				machine5.shuffle();
+				machine6.shuffle();
+			});
+			$("#slotMachineButtonShuffle").click(function(){
+				
+				$("#slotMachineButtonShuffle").addClass("close");
+			})
+			var Count=0;
+			$("#slotMachineButtonStop").click(function() {
+				$("#slotMachineButtonStop").addClass("close");
+			
+				var $this=$(this);
+				var curmachine = machine4.isRunning() ? machine4 :
+					machine5.isRunning() ? machine5 :
+					machine6.isRunning() ? machine6 : null;
+				if(curmachine) {
+					$.post("https://api.0-fashion.com/api/games/game/PlayRandom", {
+						Tag: 'zqj20170914',
+						MemberId: localStorage.MemberId,
+						U_Num: localStorage.u_num
+	
+					}, function(da) {
+						if(da.ResultType == 3) {
+								$("#slotMachineButtonShuffle").removeClass("close");
+							var GIndex=da.Data.GIndex;
+							console.log("GIndex"+GIndex);
+ 							if(GIndex==3){
+								Count++;
+								if(Count==3){
+								layer.msg(da.Message)
+									Count=0
+								}
+							}
+							console.log("中奖"+Count);
+								curmachine.stopDiy(1, ++GIndex);
+						} else {
+							curmachine.stop(true);
+							layer.msg(da.Message)
+						}
+						
+						setTimeout(function(){
+//							$this.css("pointer-events ","all");
+							$("#slotMachineButtonStop").removeClass("close");
+						},1000);
+					});
+				}
+			});
+
+		});
+	</script>
+
+	<script type="text/javascript">
+		document.querySelector('body').addEventListener('touchmove', function(ev) {
+			event.preventDefault();
+		});
+		$("#Pickup").click(function() {
+
+			var num = localStorage.activityId;
+
+			$.get("https://api.0-fashion.com/Coupon/get", {
+				CouponNum: num,
+				MemberId: localStorage.MemberId,
+				U_Num: localStorage.u_num,
+			}, function(da) {
+				if(da.ResultType == 3) {
+					layer.msg(da.Message + ",请在个人设置页查看~")
+					$(".Pickup").attr("src", "img/qixi-yilingqu.png");
+				} else {
+					layer.msg(da.Message)
+				}
+			})
+
+		})
+	</script>
+
+</html>

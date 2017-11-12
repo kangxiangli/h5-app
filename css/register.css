@@ -1,0 +1,106 @@
+@charset "utf-8";
+.fashion_box{
+	width: 100%;
+	height: 26%;
+	line-height: 3.42rem;
+	text-align: center;
+}
+.fashion_box img{
+	width: 2rem;
+	height: 2rem;
+	vertical-align: middle;
+}
+/*注册框*/
+.register_box{
+	width:5.25rem;
+	margin: 0.5rem auto;
+}
+
+.txt_block{
+	width: 100%;
+	height: 1.24rem;
+	border-bottom: 1px solid rgba(255,255,255,0.5);
+	position: relative;
+}
+.txt_block .clear{
+	width: 0.3rem;
+	position: absolute;
+	right:-0.5rem;
+	bottom: 0.3rem;
+	display: none;
+}
+.txt_block img.phone{
+	width: 0.51rem;
+	height: 0.5rem;
+}
+.txt_block img.maill{
+	width: 0.56rem;
+	height: 0.4rem;
+}
+.txt_block img.passd{
+	width: 0.42rem;
+	height: 0.5rem;
+}
+.txt_block li{
+	height: 1.24rem;
+	float: left;
+}
+.txt_block li:first-child,.txt_block li:last-child{
+	width: 1rem;
+	text-align: center;
+}
+input{
+	color: #fff;
+	border: none;
+}
+.txt_block .txt_input input{	
+	background: transparent;
+}
+.txt_block .txt_input input{
+	display: inherit;
+	font-size: 0.3rem;
+	width: 2.8rem;
+	text-align: center;
+	margin-top: 0.3rem;
+	height: 1rem;
+	line-height: 1rem;
+}
+#register_li{
+	line-height: 1.2rem;
+}
+.register_li{
+	position: absolute;
+	right: 0rem;
+	top: 0.5rem;
+}
+#verification_code{
+	font-size: 0.18rem;	
+    color: #fff;
+    padding: 0.1rem;
+    border-radius: 5px;
+    background: rgb(232,91,91);
+}
+.verification_shade{	
+	width: 100%;
+	height: 100%;
+	top: 0;
+	display: none;
+	position: absolute;
+}
+#register_login{
+	width: 5.25rem;
+	line-height: 0.82rem;
+	background: rgb(232,91,91);
+	border-radius: 5px;
+	margin: 0.38rem auto;
+	display: block;
+	
+	font-size: 0.34rem;
+	text-align: center;
+	color: #fff;
+}
+.back_index{
+	display: block;
+	width: 100%;
+	
+}

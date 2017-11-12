@@ -1,0 +1,371 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>宝贝详情</title>
+		<link rel="stylesheet" href="css/media.css-750.css?time=2017072709.css" />
+		<link rel="stylesheet" href="css/all.css?time=2017072709.css" />
+		<link rel="stylesheet" href="css/suoysp.css?time=2017072709.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+		<style type="text/css">
+			iframe {
+				width: 100%;
+				border: none;
+			}
+.footer{width: 100%;height:200px;position: absolute;bottom: -145px;z-index: 9999;background: rgba(255,255,255,.85);}
+.footer .money{position: absolute;top:2%;left:6%;font-size: .4rem;}
+.footer .more{justify-content: center;display: flex;position: absolute;top: 5%;left: 50%;width: 1rem;height: .5rem;margin-left: -.5rem;}
+.bt img{width: 100%;height: 100%;}
+.footer_content{width:90%;margin:0 auto;margin-top:.9rem;}
+.footer_content div{width: 100%;text-align: center;margin: .3rem auto;font-weight: 500;letter-spacing: 2px;font-size: .3rem;}
+		</style>
+	</head>
+
+	<body>
+		<div class="shade">
+			<div class="headerXq">
+		  
+				<div class="yuyue">
+					<img class="shoping" data-init='1' src="img/xiangqing/xin-1@2x.png" alt="" />
+				</div>
+			</div>
+			<!--宝贝详情-->
+			<div class="particulars">
+                        <div class="swiper-container">
+                          <div class="swiper-wrapper"> 
+                           </div>
+                           <div class="swiper-pagination" style="display: none;"></div>
+                         </div>
+			</div>
+			
+	<div class="footer">
+		<div class="bt money">&yen;<strong></strong></div>
+		<div class="bt more"><img src="img/xiangqing/more@2x.png" alt="" /></div>
+		<div class="footer_content">
+		   <div style="border-bottom: 1px solid rgba(0,0,0,.4);padding:.2rem;font-size:12px;">编号 : <strong id="BH"></strong></div>
+		   <div class="product_details">产品详情</div>
+		
+		   <div style="color:red" class="yuyue2">预约试穿</div>
+		  
+		</div>
+		
+	</div>
+	<!--预约选择颜色尺码-->
+			<div class="selectColorSize" style="z-index:999999">
+				<div class="imginfo">
+					<img src="" class="activeImg" alt="" />
+				</div>
+				<div class="TagPrice"></div>
+				<div class="colorSize">
+					<span>颜色:</span><span id="select_color">待选</span>&nbsp&nbsp
+					<span>尺码:</span><span id="select_size">待选</span>
+				</div>
+				<div class="allcolorsize">
+
+				</div>
+				<div class="confrim">
+					<div id="confrim">下一步</div>
+				</div>
+				<img class="closebtn" src="img/yuyue/gb@2x.png" onclick="hideSelect()" alt="" />
+			</div>
+			<div class="mask"></div>
+		</div>
+		<div class="tryClothes">
+			<p>温馨提示</p>
+			<span>1</span>
+			<input type="button" class="cancel" value="取 消" />
+			<input type="button" class="sure addshop" value="确 定" />
+		</div>
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="js/all.js?time=2017072509"></script>
+		<script src="js/swiper.min.js"></script>
+		<script type="text/javascript">
+			function showDig(msg) {
+				$(".tryClothes").show();
+				$(".tryClothes span").html(msg);
+			}
+
+			function hideDig() {
+				$(".tryClothes").hide();
+			}
+
+			function hideSelect() {
+				$(".mask").hide();
+				$(".selectColorSize").animate({
+					opacity: 'show',
+					bottom: '-800px'
+				}, 500);
+			}
+
+			function initColorSize(BigProdNum, TagPrice, callbackFn) { //根据大款号查询所有颜色尺码，选择完以后走回调
+				$(".mask").show();
+				$(".selectColorSize").animate({
+					opacity: 'show',
+					bottom: 0
+				}, 500);
+
+				$(".TagPrice").html('&yen' + TagPrice);
+
+				if($(".allcolor").length <= 0) {
+					$.ajax({
+						type: "post",
+						url: host + "/API/Products/Product/GetProductColorSize",
+						async: true,
+						data: {
+							MemberId: MemberId,
+							U_Num: userNum,
+							bigProdNum: BigProdNum,
+						},
+						success: function(data) {
+							if(data.ResultType == 3) {
+								var cons = data.Data;
+								var allColor = []; //所有颜色
+								var allimg = []; //所有图片
+								var itemcolorDom = $("<div class='allcolor'></div>");
+								var itemSizeDom = $("<div class='allsize'></div>");
+								var sizeNum = 'size';
+								var ProductId, ProductNumber; //最后选择的商品
+								$.each(cons, function(i, item) {
+									if(allColor.indexOf(item.ColorName) < 0) {
+										var tempcolor = item.ColorName;
+										allColor.push(item.ColorName);
+										itemcolorDom.append('<img src="' + item.ColorPath + '"  color-data="' + item.ColorName + '"/>');
+										var itemsize = $("<div class='" + sizeNum + i + "'></div>");
+										allimg.push(item.ThumbnailPath);
+										$.each(cons, function(j, item) {
+											if(tempcolor == item.ColorName) {
+												itemsize.append("<span>" + item.SizeName + "</span>");
+											}
+										});
+										itemSizeDom.append(itemsize);
+									}
+								})
+								var color, size;
+								$(".allcolorsize").append(itemcolorDom);
+								$(".allcolorsize").append(itemSizeDom);
+								var activeindex = 0;
+								$(".allcolor img").eq(activeindex).addClass("active_color");
+								$(".allsize div").eq(activeindex).show();
+								$(".activeImg").attr("src", allimg[0]);
+								$(".allcolor img").click(function() {
+									activeindex = $(this).index();
+									$(this).addClass("active_color").siblings().removeClass("active_color");
+									$(".allsize div").eq(activeindex).show().siblings().hide();
+									color = $(this).attr("color-data");
+									$("#select_color").html(color);
+									$(".activeImg").attr("src", allimg[activeindex]);
+								})
+								$(".allsize div span").click(function() {
+									$(this).addClass("active_size").siblings().removeClass("active_size").parent().siblings().find("span").removeClass("active_size");
+									size = $(this).text();
+									$("#select_size").html(size);
+								})
+								$("#select_color").html($(".allcolor img").eq(0).attr("color-data"));
+								$("#confrim").click(function() {
+									var finalColor = $(".active_color").attr('color-data');
+									var finalSize = $(".active_size").text();
+									$.each(cons, function(i, item) {
+										if(item.ColorName == finalColor) {
+											$.each(cons, function(j, items) {
+
+												if(items.SizeName == finalSize && items.ColorName == finalColor) {
+													ProductId = items.ProductId;
+													ProductNumber = items.ProductNumber;
+												}
+											})
+										}
+									});
+									console.log(ProductId, ProductNumber);
+									window.location.href = 'newAppointment/index.html?ProductNumber='+ProductNumber+'&imagesrc='+$('.swiper-slide-active img').attr('src')
+									//callbackFn(ProductId, ProductNumber);
+								})
+
+							} else {
+								showDig("网络状态不佳~")
+							}
+
+						}
+					});
+				}
+			}
+			$(function() {
+				document.querySelector('body').addEventListener('touchmove', function (ev) {
+    				event.preventDefault();
+				});
+				var dataId = localStorage.dataId;
+				var userNum = localStorage.u_num;
+				var MemberId = localStorage.MemberId;
+				var BigProdNum = null;
+				var TagPrice = null;
+				var swiper= new Swiper('.swiper-container', {
+							    touchRatio:1,
+							    observer:true,//修改swiper自己或子元素时，自动初始化swiper
+							    observeParents:true,//修改swiper的父元素时，自动初始化swiper
+                                slidesPerView: 1,
+                                loop : false,
+                                freeMode: false,
+        						pagination: '.swiper-pagination',
+        						onSlideChangeEnd:function(){
+        						//	 $('.swiper-no-swiping.swiper-slide-next div').css({'transform':'scale(2)','transition':'all .5s ease-in-out','margin':'-9px auto'}).parent().siblings().find('div').css({'transform':'scale(1)','transition':'all .5s ease-in-out','margin':'0 auto'});	
+        						},
+                        });
+				$.ajax({
+					type: "post",
+					url: host + "/api/products/product/getproductdetail",
+					async: true,
+					data: {
+						MemberId: MemberId,
+						U_Num: userNum,
+						ProductId: dataId,
+					},
+					success: function(data) {
+						//					console.log(data.Data);
+						if(data.ResultType == 3) {
+							var cons = data.Data;
+							BigProdNum = cons.BigProdNum;
+							TagPrice = cons.TagPrice;
+							
+							if(cons.ProductImages.length!=0){
+								$.each(cons.ProductImages,function(i,item){
+			                      $('.swiper-wrapper').append('<div class="swiper-slide"><img style="max-height: 500px;width:auto" src="'+item.ThumbnailSmallPath+'"/></div>')
+			                    });
+							}else{
+								 $('.swiper-wrapper').append('<div class="swiper-slide"><img style="max-height: 500px;width:auto;" src="img/xiangqing/unknow.jpg"/></div>')
+							}
+						   
+								$(".swiper-pagination").show();
+								$('.money strong').text(cons.TagPrice);
+								$('#BH').text(cons.ProductNumber);
+							$('.more').bind('click',function(){
+							
+							  	if($('.more img').attr('src').indexOf("arrow_under@2x.png")>=0){
+							 		$(".footer").animate({'bottom':'-145px'},200);
+							 		 $('.more img').attr('src','img/xiangqing/more@2x.png').css({'height':'100%','width':'100%'});
+							    }else{
+							    	$(".footer").animate({'bottom':0},500);
+								    $('.more img').attr('src','img/xiangqing/arrow_under@2x.png').css({'height':'40%','width':'60%'});
+							    }
+							    
+							 
+							  })
+							$(".product_details").click(function(){
+								
+								if($(".particulars iframe").length<1){
+									$(".footer,.swiper-container").hide();
+									$(".particulars").append('<iframe src=https://www.0-fashion.com/' + cons.ProductDetail + '></iframe>');
+									$("iframe").height($("body").height() - $('.headerXq').height());
+								}else{
+									$(".footer,.swiper-container").hide();
+									$(".particulars iframe").show();
+								}
+							})
+								
+						}
+					
+					}
+				});
+				$(".nav_back").click(function() {
+					if($(".footer").css('display')=='none'){
+						$(".particulars iframe").hide();
+						$(".footer,.swiper-container").show();
+					}else{
+					//	location.href = 'shangpin.html';
+          	window.history.go(-1);
+					}
+					
+				});
+				$.ajax({
+					type: "post",
+					url: host + "/API/Members/Appointment/getall",
+					data: {
+						MemberId: localStorage.MemberId,
+						U_Num: localStorage.u_num,
+					},
+					success: function(data) {
+						if(data.ResultType == 3) {
+							console.log(data.Data);
+							$.each(data.Data, function(i, item) {
+								if(item.BigProdNum == BigProdNum) {
+									$(".shoping").attr("src", "img/xiangqing/xin-2@2x.png").attr("data-init", '2');
+								}
+							});
+						}
+					}
+				});
+				$(".yuyue,.yuyue2").click(function() {
+					$(".shade").addClass('bgfilter');
+				    $(".footer").animate({'bottom':'-440px'},200);
+				   $('.more img').attr('src','img/xiangqing/more@2x.png').css({'height':'100%','width':'100%'});
+					var adminId = localStorage.MemberId;
+					if((adminId == '') || (adminId == undefined) || (adminId == null)) {
+						showDig("您还未登陆,无法预约,确定登陆吗？");
+						$('.sure').click(function() {
+							location.href = "login.html";
+						});
+					} else {
+						var dat = $(".shoping").attr('data-init');
+						if(dat == '1') {
+							showDig("你确定去店铺试穿");
+							$(".sure").click(function() {
+								hideDig();
+								initColorSize(BigProdNum, TagPrice, callbackFn);
+								$(".shade").removeClass('bgfilter');
+
+								function callbackFn(ProductId, ProductNumber) {
+									hideSelect();
+									$.ajax({
+										type: "post",
+										url: host + "/API/Members/Appointment/Add",
+										dataType: "json",
+										data: {
+											MemberId: localStorage.MemberId,
+											U_Num: localStorage.u_num,
+											data: JSON.stringify([{
+												productId: ProductId,
+												productnumber: ProductNumber
+											}]),
+										},
+										success: function(da) {
+											if(da.ResultType == 3) {
+												showDig("预约成功");
+												$(".sure").unbind("click").click(function() {
+													hideDig();
+													$(".shade").removeClass('bgfilter');
+												})
+												$(".shoping").attr("src", "img/xiangqing/xin-2@2x.png").attr("data-init", '2');
+											} else {
+													showDig(da.Message);
+													$(".sure").unbind("click").click(function() {
+													hideDig();
+													$(".shade").removeClass('bgfilter');
+												})
+											}
+										}
+									});
+								}
+
+							});
+
+						} else {
+							showDig("已经预约");
+						}
+					}
+
+				});
+				$(".cancel").click(function() {
+					hideDig();
+					$(".shade").removeClass('bgfilter');
+
+				});
+				$(".sure,.addshop").click(function() {
+					hideDig();
+					$(".shade").removeClass('bgfilter');
+
+				});
+			})
+		</script>
+	</body>
+
+</html>

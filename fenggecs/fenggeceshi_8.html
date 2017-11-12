@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>风格测试</title>
+		<link href="css/style_fenggeceshi_tap6-8.css?time=2017072509.css" rel="stylesheet">
+		<script src="../js/jquery-1.11.1.min.js?time=2017072509"></script>
+		<script src="../Layer/layer.js?time=2017072509"></script>
+		<script type="text/javascript" src="js/fenggecs.js?time=2017072509"></script>
+	</head>
+	<script>
+		$(function() {
+			//渲染颜色分类
+			var disadvantages = window.localStorage.getItem("disadvantages");
+			console.log("disadvantages:" + disadvantages);
+			$.ajax({
+				url: 'https://api.0-fashion.com/api/properties/color/getlist',
+				data: {
+					MemberId: localStorage.MemberId,
+					U_Num: localStorage.u_num
+				},
+				success: function(data) {
+					//console.log(data)
+					if(data.ResultType == 3) {
+						$.each(data.Data, function(i, item) {
+							$('.line ul').append('<li class="" data-colorid=' + item.ColorId + '><img src="' + item.IconPath + '"/><p>' + item.ColorName + '</p></li>')
+						});
+						var PreferenceColor='';
+						$(".line ul li img").bind('click', function() {
+							PreferenceColor = PreferenceColor + "," + $(this).siblings('p').html();
+							if($(this).hasClass("face")) {
+								$(this).removeClass('face');
+								$(this).parent().removeClass('duigou');
+							} else {
+								$(this).addClass('face');
+								$(this).parent().addClass('duigou');
+							}
+
+						})
+					}
+				}
+			})
+		});
+
+		function add_styleTest() {
+			var likeClolrArr = [];
+			$(".line ul li").each(function(i, item) {
+				if($(this).hasClass("duigou")) {
+					likeClolrArr.push($(this).find("p").html());
+				}
+
+			})
+			if(likeClolrArr.length < 1) {
+				layer.msg("至少选择一种喜欢的颜色~");
+			}
+			if(likeClolrArr.length > 3) {
+				layer.msg("最多选择3个喜欢的颜色~");
+				likeClolrArr = [];
+			}
+			//			console.log("喜欢的颜色有：" + likeClolrArr);
+
+			var Gender = window.localStorage.getItem("Gender"); //1性别
+			var Birthday = window.localStorage.getItem("Birthday"); //2生日
+			var FigureInfo = window.localStorage.getItem("FigureInfo"); //3身高,体重
+			var ApparelSize = window.localStorage.getItem("ApparelSize"); //4上size，下size
+			var BodyInfo = window.localStorage.getItem("BodyInfo"); //5肩胸腰臀
+			var shenxing = window.localStorage.getItem("shenxing"); //6身形
+			var disadvantages = window.localStorage.getItem("disadvantages"); //7缺点
+
+			var data = {};
+			data.MemberId = parseInt(localStorage.MemberId);
+			data.U_Num = localStorage.u_num;
+			data.Gender = parseInt(Gender);
+			data.Birthday = Birthday;
+			data.ApparelSize = ApparelSize;
+			data.FigureInfo = FigureInfo + "," + BodyInfo + "," + shenxing;
+			data.FigureDescription = disadvantages;
+			var PreferenceColor = '';
+			$.each(likeClolrArr, function(i, item) {
+				PreferenceColor = PreferenceColor + item + ",";
+			})
+
+			PreferenceColor = (PreferenceColor.substring(PreferenceColor.length - 1) == ',') ? PreferenceColor.substring(0, PreferenceColor.length - 1) : PreferenceColor;
+			
+			data.PreferenceColor = PreferenceColor;
+		  console.log("所有数据 :",data);
+		 	$.ajax({
+				type: 'post',
+				url:host + '/api/members/member/addattr',
+				data: data,
+				success: function(data) {
+					if(data.ResultType == 3) {
+						console.log(data);
+						window.localStorage.setItem('StyleTest', true);
+						window.location.href = "fenggeceshi_report.html";
+					}else{
+						console.log(data.Message);
+					}
+				}
+			})
+
+		}
+	</script>
+
+	<body>
+		<img src="img/dbg.png" style="width: 100%; height: 100%; z-index: -100;position: fixed;" />
+		<header id="st-trigger-effects" class="column">
+			<div class="back">
+				<a href="javascript:void(0);" onclick="closeWin(7);"><img src="img/return@2x.png" alt="">返回</a>
+			</div>
+			<p>风格测试</p>
+			<a id="close" href="javascript:void(0)" onclick="return_Launch();"><img src="img/close@2x.png" /></a>
+
+			<div class="progress">
+
+				<li><img src="img/d1_pre@2x.png" /></li>
+				<li><img src="img/d2_pre@2x.png" /></li>
+				<li><img src="img/d3_pre@2x.png" /></li>
+				<li><img src="img/d4_pre@2x.png" /></li>
+				<li><img src="img/d5_pre@2x.png" /></li>
+				<li><img src="img/d6_pre@2x.png" /></li>
+				<li><img src="img/d7_pre@2x.png" /></li>
+				<li><img src="img/d8_pre@2x.png" /></li>
+
+			</div>
+		</header>
+		<div class="contain">
+
+			<div class="select_yanse_contain">
+				<div class="line">
+					<ul>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+
+		<footer>
+			<div class="next" onclick="add_styleTest();">
+				<img src="img/go@2x.png" />
+			</div>
+
+		</footer>
+		<div class="yinDaoy imgEight" data-int='0'></div>
+	</body>
+
+</html>

@@ -1,0 +1,331 @@
+@charset "utf-8";
+
+/*头像*/
+
+.photo {
+	width: 50%;
+	text-align: center;
+	float: left;
+}
+
+.head_portrait {
+	width: 2.26rem;
+	height: 2.26rem;
+	border-radius: 50%;
+	border: 0.11rem solid rgba(255, 255, 255, 0.4);
+	margin: 0.4rem auto 0;
+	overflow: hidden;
+}
+
+.head_portrait img {
+	width: 100%;
+	height: 100%;
+}
+
+
+/*风格测试*/
+
+.style_test,
+.activity {
+	width: 25%;
+	float: left;
+	font-size: 0.3rem;
+	color: #fff;
+	margin-top: 1.2rem;
+}
+
+.style_test a,
+.activity a {
+	color: #fff;
+}
+
+.style_test {
+	text-align: right;
+}
+
+.activity {
+	text-align: left;
+}
+
+.style_test p,
+.activity p {
+	padding-top: 0.2rem;
+}
+
+.style_test img {
+	width: 0.34rem;
+}
+
+.activity img {
+	width: 0.4rem;
+}
+
+.style_test img {
+	margin-right: 0.1rem;
+}
+
+.activity img {
+	margin-left: 0.1rem;
+}
+
+.gift_box {
+	width: 25%;
+	float: right;
+}
+
+
+/*等级*/
+
+.user_class {
+	width: 100%;
+	margin-top: 0.19rem;
+	color: #fff;
+	height: 1.2rem;
+	clear: both;
+}
+
+.user_class li {
+	width: 100%;
+	height: 0.6rem;
+	line-height: 0.6rem;
+	text-align: center;
+}
+
+.user_class li img {
+	width: 0.3rem;
+	height: 0.35rem;
+	margin-left: 0.8rem;
+	vertical-align: middle;
+}
+
+.name {
+	font-size: 0.36rem;
+}
+
+.grade_style {
+	font-size: 0.24rem;
+}
+
+.hand_testing {
+	text-indent: 0.35rem;
+}
+
+
+/*积分储值*/
+
+.integral {
+	width: 100%;
+	height: 0.88rem;
+	overflow: hidden;
+	color: #fff;
+	margin-top: 0.52rem;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.change_store {
+	width: 29.3%;
+	text-align: center;
+	float: left;
+}
+
+.integral_details,
+.stored_details {
+	width: 35%;
+	float: left;
+	text-align: center;
+	height: 0.88rem;
+}
+
+.integral_details,
+.change_store {
+	border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.integral li p {
+	height: 0.48rem;
+	line-height: 0.58rem;
+	font-size: 0.36rem;
+}
+
+.integral li .ingallImg img {
+	width: 0.35rem;
+	text-align: center;
+	vertical-align: top;
+	margin-top: 0.12rem;
+}
+
+.integral li span {
+	display: block;
+	height: 0.4rem;
+	line-height: 0.3rem;
+	font-size: 0.24rem;
+}
+
+
+/*会员区域*/
+
+.vip_img {
+	width: 100%;
+	margin: 0.22rem auto;
+}
+
+.chang_shop {
+	width: 4rem;
+	height: 6rem;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -2rem;
+	margin-top: -3rem;
+	background: rgba(0, 0, 0, 0.6);
+	border-radius: 5px;
+	display: none;
+	z-index: 12;
+	overflow-y: scroll;
+}
+
+.chang_shop li {
+	font-size: 0.4rem;
+	height: 0.9rem;
+	line-height: 0.9rem;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	color: #fff;
+	width: 100%;
+	text-align: center;
+}
+
+.bg_dialog {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: transparent;
+	z-index: 10;
+	display: none;
+}
+
+.youhqBg {
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	display: none;
+}
+
+.yhqDialog {
+	position: absolute;
+	width: 90%;
+	padding-bottom: 0.2rem;
+	background: #fff;
+	top: 50%;
+	margin-top: -1.5rem;
+	left: 5%;
+	border-radius: 5px;
+	display: none;
+	z-index: 12;
+}
+
+#youhq {
+	overflow-y: scroll;
+}
+
+.youhuiquan {
+	padding-bottom: 1rem;
+}
+
+.barcodeImg,
+.barcodeImgalog,
+.oldBarcodeImg,
+.pastBarcodeImg {
+	margin-top: 10px;
+	height: 2rem;
+	vertical-align: top;
+}
+.barcodeImg,
+.barcodeImgalog,
+.pastBarcodeImg {
+	width: 80%;
+	margin-left: 10%;
+}
+
+.oldBarcodeImg,.pastBarcodeImg{
+	width: 90%;
+	margin-left: 5%;	
+}
+
+.youhuiquan .dengJi,
+.youhuiquanalog .dengJialog {
+	padding-top: 0.3rem;
+	font-size: 0.26rem;
+	position: relative;
+}
+.dengJi,.dengJialog{display: none;}
+.youhuiquan .dengJi,.youhuiquan p,.youhuiquanalog .dengJialog,.youhuiquanalog p{
+	color: #C0BFBE;
+}
+.youhuiquan .dengJi b,
+.youhuiquanalog .dengJialog b {
+	position: absolute;
+	right: 0.4rem;
+}
+
+.youhuiquan .loYh,
+.youhuiquanalog .loYh {
+	margin-left: 0.4rem;
+	width: 0.3rem;
+	vertical-align: middle;
+}
+.youhuiquan p,
+.youhuiquanalog p {
+	font-size: 0.3rem;
+	text-align: center;
+	width: 100%;
+}
+
+.imgYouh,
+.oldImg,
+.pastImg {
+	/*height: 2rem;*/
+	padding-bottom: 1rem;
+}
+
+.oldImg,
+.pastImg {
+	width: 90%;
+	margin-left: 5%;
+}
+
+.imgYouh
+{
+	width: 80%;
+	margin-left: 10%;
+}
+
+#oldYouh {
+	width: 90%;
+	margin: 0 auto;
+	margin-bottom: 0.6rem;
+	border: 1px dotted #fff;
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+#oldYouh .seeYouh {
+	font-size: 0.3rem;
+	color: #FFF;
+	text-align: center;
+	padding: 0.2rem 0;
+}
+
+.open {
+	display: block;
+	margin: 0 auto;
+	width: 0.3rem;
+	padding-bottom: 0.2rem;
+}
+
+#appendYouh {
+	display: none;
+}

@@ -1,0 +1,69 @@
+
+/*底部导航*/
+.footer_navigation{
+	width: 100%;
+	height: 1.58rem;
+	position: fixed;
+	bottom: 0;
+	z-index: 10;
+	background: url(../img/public/xl@2x.png) no-repeat;
+	background-size:100% 100% ;
+}
+.footer_navigation ul{
+	height: 0.98rem;
+	line-height: 0.8rem;
+	margin-top: 0.60rem;
+}
+.footer_navigation ul li:first-child{
+	float: left;
+}
+.footer_navigation ul li:last-child{
+	float: right;
+}
+.footer_navigation ul li img{	
+	vertical-align: middle;
+}
+
+.footer_navigation ul li.bottom_nav{
+	width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    margin-left: -25%;
+    left: 50%;
+    position: absolute;
+    margin-top: -0.6rem;
+}
+.bottom_nav img{
+	width: 0.63rem;
+	height: 0.66rem;
+	margin-top: 0.19rem;
+}
+.bottom_nav span{
+	display: block;
+	font-size: 0.26rem;
+	height: 0.25rem;
+	line-height: 0.25rem;
+	margin-top: 0.26rem;
+	color: #fff;
+}
+
+.footer_navigation ul li.back_more img{
+	
+	
+	width: 0.31rem;
+	height: 0.55rem;
+	/*margin-left: 0.64rem;*/
+	margin-top: 0.2rem;
+}
+.footer_navigation ul li.back_me img{
+	width: 0.57rem;
+	height: 0.55rem;
+	margin-right: 0.64rem;
+}
+
+.yuyueLi .yuyueImg{
+	width: 0.57rem !important; 
+	height: 0.55rem !important; 
+	/*margin-left: 0 !important;*/
+	margin-top: 0.25rem;
+}

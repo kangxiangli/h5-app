@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>设置</title>
+		<link rel="stylesheet" href="css/media.css-750.css?time=2017072509.css" />
+		<link rel="stylesheet" type="text/css" href="css/footer.css?time=2017072509.css" />
+		<link rel="stylesheet" type="text/css" href="css/suoysp.css?time=20170801.css" />
+		<link rel="stylesheet" href="css/jifen.css?time=2017072509.css" />
+		<script src="js/jquery-2.1.1.min.js?time=2017072509" type="text/javascript"></script>
+		<script src="https://cdn.jsdelivr.net/jsbarcode/3.3.20/JsBarcode.all.min.js?time=2017072509"></script>
+		<!--<script type="text/javascript" src="js/jquery-barcode.js">-->
+		</script>
+		<script type="text/javascript" src="Layer/layer.js?time=2017072509"></script>
+		<script type="text/javascript" src="js/all.js?time=2017080113"></script>
+
+		<script src="https://www.0-fashion.com/Content/Scripts/Jquery/SignalR/jquery.signalR-2.2.0.min.js?time=2017072509"></script>
+		<script src="https://www.0-fashion.com/signalr/hubs?time=2017072509"></script>
+		<!--<script src="http://11.1.1.113:9999/Content/Scripts/Jquery/SignalR/jquery.signalR-2.2.0.min.js"></script>-->
+		<!--<script src="http://11.1.1.113:9999/signalr/hubs"></script>-->
+	</head>
+
+	<body class="bgBody">
+		<div class="yuyueYd" data-int='0'></div>
+		<div class="huodongYd" data-int='0'>
+			<div class="huodBtn"></div>
+		</div>
+		<div class="bagfil">
+			<!--头像-->
+			<div class="touXiang">
+				<div class="style_test">
+					<img src="img/selfmesg/cs@2x.png" alt="" />
+					<p>测试</p>
+				</div>
+				<div class="photo">
+					<div class="head_portrait">
+						<img src="img/singleitem/bigimg/2@2x.png" alt="" />
+					</div>
+				</div>
+				<div class="activity">
+					<img src="img/singleitem/huod@2x.png" alt="" />
+					<p>活动</p>
+				</div>
+			</div>
+			<!--姓名 等级-->
+			<ul class="user_class">
+				<li class="right_align name"><span>Amaya</span></li>
+				<!--<li><img src="img/selfmesg/note@2x.png" alt="" /></li>-->
+				<li class="right_align grade_style"><span>搭配师</span></li>
+				<!--<li class="grade_style hand_testing">VIP 5</li>-->
+			</ul>
+			<!--积分 储值-->
+			<ul class="integral">
+				<li class="integral_details">
+					<p class="ingall"></p> <span>积分</span></li>
+				<li class="change_store">
+					<p class="ingallImg">
+						<img src="img/selfmesg/dp@2x.png" alt="" />
+					</p>
+					<span>更改店铺</span>
+				</li>
+				<li class="stored_details">
+					<p class="stored_value"></p> <span>储值</span></li>
+			</ul>
+			<!--优惠券-->
+			<div id='youhq' class="scroll">
+				<div id="newYouh">
+					<div class="youhuq"></div>
+				</div>
+				<div id='oldYouh'>
+					<p class="seeYouh">查看 过期/已使用 优惠券</p>
+					<img class="open" src="img/public/sj@2x.png" alt="" />
+					<div id="appendYouh"></div>
+				</div>
+			</div>
+
+			<!--<div class="clearLocalst">
+				清除缓存数据
+			</div>-->
+			<!--底部导航栏-->
+			<div class="footer_navigation">
+				<ul>
+					<li class="back_more yuyueLi">
+						<a href="yuyue.html">
+							<img class="yuyueImg" src="img/yuyue/yuyue@2x.png" alt="" /></a>
+					</li>
+					<li class="bottom_nav">
+						<img src="img/public/sysp@2x.png" alt="" />
+						<span>所有商品</span>
+					</li>
+					<li class="back_me"><img src="img/public/onlycenter@2x.png" alt="" /></li>
+				</ul>
+			</div>
+		</div>
+		<!--买手商城-->
+		<div class="showHid" id="buyerBox">
+			<div class="hand_mall">
+				<!--logo 标题-->
+				<div class="logo_buyahand">
+					<img src="img/public/logo@2x.png" alt="" />商城
+				</div>
+				<!--买手区域-->
+				<div class="buyers">
+					<!--左边 衣服-->
+					<div class="cloDec clothes">
+						<div data-type="1">
+							<img class="top_cloth" src="img/buyhand/jacket2@2x.png" alt="" />
+							<span>上装</span>
+						</div>
+						<div data-type="2">
+							<img class="top_cloth" src="img/buyhand/dress@2x.png" />
+							<span>下装</span>
+						</div>
+						<div class="bottom_cloth" data-type="3">
+							<img src="img/buyhand/dress4@2x.png" />
+							<span>连体</span>
+						</div>
+					</div>
+					<!--右边鞋子 装饰品-->
+					<div class="cloDec decoration">
+						<div data-type="4">
+							<img src="img/buyhand/scarf@2x.png" />
+							<span>围巾</span>
+						</div>
+						<div data-type="5">
+							<img src="img/buyhand/bag44@2x.png" />
+							<span>包</span>
+						</div>
+						<div data-type="6">
+							<img src="img/buyhand/diamond22@2x.png" />
+							<span>饰品</span>
+						</div>
+						<div data-type="7">
+							<img src="img/buyhand/feminine3@2x.png" />
+							<span>鞋</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--点击头像退出、清除缓存-->
+		<div class="clear_cache">
+			<p>温馨提示</p>
+			<span>222</span>
+			<div>
+				<b class="abolish">取消</b>
+				<b class="cache_del">缓存</b>
+				<b class="determine">确定</b>
+			</div>
+		</div>
+		<!--提示框-->
+		<div class="dialog_box">
+			<p>温馨提示</p>
+			<span></span>
+			<div class="close_dialog  souquan" type="button">确定</div>
+		</div>
+		<div class="tryClothes">
+			<p>温馨提示</p>
+			<span>111</span>
+			<div type="button" class="cancel">取 消</div>
+			<div type="button" class="sure">确 定</div>
+		</div>
+		<div class="loginSure" style="display: none;">
+			<p>温馨提示</p>
+			<span>确定登陆</span>
+			<div type="button" class="cancel refuse">拒 绝</div>
+			<div type="button" class="sure adopt">确 定</div>
+		</div>
+		<!--更改店铺-->
+		<ul class="chang_shop scroll">
+		</ul>
+		<div class="bg_dialog"></div>
+		<!--优惠券遮罩-->
+		<div class="youhqBg"></div>
+		<div class="yhqDialog">
+			<div class="youhuiquanalog">
+				<div class="dengJialog">
+					<img class="loYh" src="img/public/logo@2x.png" alt="" />
+					<span>VIP</span> <i>5级</i>
+					<b>优惠8折</b>
+				</div>
+				<img class="barcodeImgalog" />
+				<p></p>
+			</div>
+		</div>
+		<script>
+			if(!localStorage.MemberId || !localStorage.u_num) {
+				location.replace('login.html');
+			}
+			$(function() {
+				var overscroll = function(el) {
+					el.addEventListener('touchstart', function() {
+						var top = el.scrollTop;
+						var totalScroll = el.scrollHeight;
+						var currentScroll = top + el.offsetHeight;
+						if(top === 0) {
+							el.scrollTop = 1;
+						} else if(currentScroll === totalScroll) {
+							el.scrollTop = top - 1;
+						}
+					});
+					el.addEventListener('touchmove', function(evt) {
+						if(el.offsetHeight < el.scrollHeight) {
+							evt._isScroller = true;
+						}
+					});
+				}
+				//overscroll(document.querySelector('.scroll'));//哪里需要可以局部滚动，添加一个“scroll”的class 
+				for(var i = 0; i < document.querySelectorAll('.scroll').length; i++) {
+					overscroll(document.querySelectorAll('.scroll')[i]);
+				}
+				document.body.addEventListener('touchmove', function(evt) {
+					if(!evt._isScroller) {
+						evt.preventDefault();
+					}
+				});
+				$("#youhq").height($("body").height() - $(".photo").height() - $(".user_class").height() - $(".integral").height() - $(".footer_navigation").height());
+				//优惠券条形码   //0未使用 1 已使用  2已过期  
+				var unused = 0,
+					used = 1,
+					pastDue = 2,
+					options = {
+						format: "CODE128", //选择要使用的条形码类型
+						width: 4, //设置条之间的宽度
+						height: 100, //高度
+						displayValue: false, //是否在条形码下方显示文字
+						background: "#fff", //设置条形码的背景
+						lineColor: "#000", //设置条和文本的颜色。
+						margin: 0 //设置条形码周围的空白边距
+					};
+
+				//未使用
+				$.ajax({
+					type: "post",
+					url: host + "/api/members/mywallet/get",
+					data: {
+						MemberId: localStorage.MemberId,
+						U_Num: localStorage.u_num,
+						CouponType: 0
+					},
+					success: function(data) {
+						var divBox = '<div class="youhuiquan"><div class="dengJi"><img class="loYh" src="img/public/logo@2x.png" alt="" /><span> VIP</span> <i>5级</i><b>优惠8折</b></div><img class="barcodeImg" /><p></p></div>';
+
+						if(data.ResultType == 3) {
+							$("#newYouh").prepend(divBox);
+							$(".youhuiquan p").html(data.Data.CardNumber);
+							$(".barcodeImg").JsBarcode(data.Data.CardNumber, options);
+
+							$.each(data.Data.ListCouPon, function(i, item) {
+								$(".youhuq").prepend('<img class="imgYouh" data-int=' + item.CouponNumber + '  src=' + item.CouponImagePath + '>')
+							});
+							//							$(".barcodeImg").click(function() {
+							//								saomiao(data.Data.CardNumber);
+							//							});
+							$(".imgYouh").bind('click', function() {
+								var $tiao = $(this).attr('data-int');
+								saomiao($tiao);
+							});
+						}
+					}
+				});
+				pastNum(1);
+				pastNum(2);
+				var num = 0,
+					past = 0;
+				//已使用/过期
+				function pastNum(type) {
+					$.ajax({
+						type: "post",
+						url: host + "/api/members/mywallet/get",
+						data: {
+							MemberId: localStorage.MemberId,
+							U_Num: localStorage.u_num,
+							CouponType: type
+						},
+						success: function(data) {
+							if(data.ResultType == 3) {
+								$.each(data.Data.ListCouPon, function(i, item) {
+									$("#appendYouh").append('<img class="oldImg" data-int=' + item.CouponNumber + '  src=' + item.CouponImagePath + '>');
+									past++;
+								});
+								$(".oldBarcodeImg,.oldImg").click(function() {
+									if(type == 1) {
+										layer.msg("已使用");
+									} else {
+										layer.msg("已过期");
+									}
+								});
+								num += past;
+								if(num == 0) {
+									$('#oldYouh').hide();
+								} else {
+									$('#oldYouh,.open').show();
+									var flag = 1;
+									$(".open,.seeYouh").click(function() {
+										if(flag == 1) {
+											$("#appendYouh").show();
+											$('.open').hide();
+											flag = 0;
+										} else {
+											$("#appendYouh").hide();
+											$('.open').show();
+											flag = 1;
+										}
+									});
+								}
+							}
+						}
+					});
+				}
+
+				function saomiao(m) {
+					$(".youhuiquanalog p").html(m);
+					$(".barcodeImgalog").JsBarcode(m, options); //jQuery
+					$(".youhqBg,.yhqDialog").show();
+				}
+				$(".youhqBg").click(function() {
+					$(".youhqBg,.yhqDialog").hide();
+				})
+				if((localStorage.MemberId == '') || (localStorage.MemberId == null) || (localStorage.MemberId == undefined)) {
+					location.href = 'login.html';
+				}
+				//获取个人信息
+				$(".head_portrait img").attr("src", localStorage.UserPhoto);
+				$(".user_class .name span").html(localStorage.MemberName);
+				//初始化积分
+				getJiFen();
+				//获取店铺
+				getShop()
+				//点击头像退出
+				$(".head_portrait").click(function() {
+					clearcache("确定要退出吗？");
+					$(".abolish").click(function() {
+						closeZ();
+					});
+					$(".determine").click(function() {
+						localStorage.MemberId = '';
+						localStorage.u_num = '';
+						localStorage.UserPhoto = '';
+						localStorage.MemberName = '';
+						closeZ();
+						location.href = 'index.html';
+					});
+					$(".cache_del").click(function() {
+						localStorage.clear();
+						closeZ();
+						location.href = 'index.html';
+					});
+				});
+				//测试
+				$(".style_test").click(function() {
+					var admin = localStorage.MemberId;
+					var isTest=localStorage.isTest;
+					if((admin == '') || (admin == undefined) || (admin == null)) {
+						layer.msg("请先登录");
+					} else {
+						if(isTest) {
+							window.location.href = 'fenggecs/fenggeceshi_report.html';
+						} else {
+							window.location.href = 'fenggecs/fenggeceshi_1.html';
+						}
+
+					}
+
+				});
+				//弹出取消框
+				function showCler(msg) {
+					$(".bagfil").addClass("bgfilter");
+					$(".tryClothes").show();
+					$(".tryClothes span").html(msg);
+					$(".bg_dialog").show();
+				}
+				//清除缓存
+				function clearcache(msg) {
+					$(".clear_cache").show();
+					$(".clear_cache span").html(msg);
+					$(".bagfil").addClass("bgfilter");
+					$(".bg_dialog").show();
+				}
+				//关闭遮罩层
+				function closeZ() {
+					$(".chang_shop,.bg_dialog,.clear_cache,.tryClothes").hide();
+					$(".bagfil").removeClass("bgfilter");
+				}
+				//获取所述店铺
+				$.ajax({
+					type: "post",
+					url: host + '/api/Members/MemberInfo/GetMemberStore',
+					data: {
+						MemberId: localStorage.MemberId,
+						U_Num: localStorage.u_num,
+					},
+					success: function(data) {
+						if(data.ResultType == 3) {
+							$.each(data.Data, function(i, item) {
+								if(item.IsMainStore == false) {
+									$(".change_store span").html(item.StoreName);
+								}
+							});
+						}
+					}
+				});
+				//更改店铺
+				$(".change_store").click(function() {
+					showCler("切换店铺将清除所有积分");
+					$(".cancel").click(function() {
+						closeZ();
+						$(".tryClothes").hide();
+					});
+					$(".sure").click(function() {
+						$(".tryClothes").hide();
+						$(".chang_shop,.bg_dialog").show();
+						$(".bagfil").addClass("bgfilter");
+						//获取店铺信息
+						getShop();
+					})
+
+					$(".bg_dialog").click(function() {
+						closeZ();
+					})
+
+				});
+				//获取所有店铺
+				function getShop() {
+					$.ajax({
+						type: "post",
+						url: host + "/API/stores/store/queryattachstore",
+						data: {
+							MemberId: localStorage.MemberId,
+							U_Num: localStorage.u_num,
+						},
+						success: function(data) {
+							if(data.ResultType == 3) {
+								$(".chang_shop").empty();
+								$.each(data.Data, function(i, item) {
+									$(".chang_shop").append("<li id=" + item.Id + ">" + item.StoreName + "</li>")
+								});
+							}
+							$(".chang_shop li").bind('click', function() {
+								var shopId = $(this).attr('id');
+								$(".change_store span").html($(this).html());
+
+								$.ajax({
+									type: "post",
+									url: host + "/api/members/member/SwitchAttachStore",
+									data: {
+										MemberId: localStorage.MemberId,
+										U_Num: localStorage.u_num,
+										newStoreId: shopId,
+									},
+									success: function(da) {
+										num = num || 200;
+										if(da.ResultType == 3) {
+											closeZ();
+											getJiFen();
+										}
+									}
+								});
+							})
+						}
+					})
+				}
+				//获取积分，储值
+				function getJiFen() {
+					$.ajax({
+						type: "post",
+						url: host + "/api/Members/MemberInfo/GetMemberName",
+						data: {
+							MemberId: localStorage.MemberId,
+							U_Num: localStorage.u_num,
+						},
+						success: function(data) {
+							if(data.ResultType == 3) {
+								$(".grade_style span").html(data.Data.MemberTypeName);
+								$(".hand_testing").html(data.Data.LevelName);
+								$(".ingall").html(data.Data.Score);
+								$(".stored_value").html(data.Data.Balance);
+							} else {
+								showDiag(data.Message);
+							}
+						}
+					});
+				}
+
+				$(".cloDec div").click(function() {
+					var typeId = $(this).attr("data-type");
+					localStorage.ParentCategoryName = typeId;
+					location.href = 'shangpin.html';
+				});
+				//		$(".integral").click(function(){
+				//			location.href='chuzhi.html';
+				//		});
+			});
+
+			//进入活动
+			$(".activity").click(function() {
+
+				location.href = "huodong/activeIdnex.html";
+
+				//					debugger;
+				//				$.post("https://api.0-fashion.com/Api/Games/Game/GetGameInfo", {
+				//					Tag: 'FiveYear',
+				//					MemberId: localStorage.MemberId,
+				//					U_Num: localStorage.u_num
+				//					//												MemberId: 6382,
+				//					//												U_Num: "a8dc9d8744038399"
+				//
+				//				}, function(da) {
+				//					//						debugger;
+				//					console.log(da);
+				//					if(da.ResultType == 3) {
+				//						debugger
+				//						var LimitCount = da.Data.LimitCount;
+				//						var PlayedCount = da.Data.PlayedCount;
+				//						var startTime = da.Data.StartTime;
+				//						var endTime = da.Data.EndTime;
+				//						var toDay = getNowFormatDate();
+				//						var remained = LimitCount - PlayedCount;
+				//						if(toDay <= endTime && toDay >= startTime) {
+				//							if(remained == 0) {
+				//								//									layer.msg("您的次数已经用完~", {
+				//								//										time: 100000
+				//								//									});
+				//								layer.msg("您的次数已经用完");
+				//							} else {
+				//								window.location.href = "/home/store/game/DZZ.html";
+				//								//								window.location.href = "game/DZZ.html";
+				//							}
+				//						} else {
+				//							layer.msg("暂无活动");
+				//						}
+				//
+				//					} else {
+				//						layer.msg("游戏未定义");
+				//					}
+				//				})
+
+				//				function getNowFormatDate() {
+				//					var date = new Date();
+				//					var seperator1 = "-";
+				//					var seperator2 = ":";
+				//					var month = date.getMonth() + 1;
+				//					var strDate = date.getDate();
+				//					if(month >= 1 && month <= 9) {
+				//						month = "0" + month;
+				//					}
+				//					if(strDate >= 0 && strDate <= 9) {
+				//						strDate = "0" + strDate;
+				//					}
+				//					var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate +
+				//						" " + date.getHours() + seperator2 + date.getMinutes() +
+				//						seperator2 + date.getSeconds();
+				//					return currentdate;
+				//				}
+			});
+
+			(function($) {
+				$.notification = (function(MemberId) {
+					var self = this;
+					$.connection.hub.url = "https://www.0-fashion.com/signalr";
+					//					$.connection.hub.url = "http://11.1.1.113:9999/signalr";
+					//$.connection.hub.logging = startlog;
+					var connection = $.connection.hub.start();
+					var autonotificationhub = $.connection.apiMemberHub;
+					var server = autonotificationhub.server;
+					connection.done(function() {
+						server.flushSocketLink(MemberId);
+					});
+					$.connection.hub.reconnected(function() {
+						server.flushSocketLink(MemberId);
+					});
+
+					autonotificationhub.client.GetNoti = function(data) {
+						self.GetNoti(data);
+					}
+
+					//接收到消息【可重写】
+					//					self.GetNoti = function(data) {
+					//						console.log(data);
+					//						//						return data;
+					//					}
+					//发送消息到AdminId
+					self.SendNoti = function(AdminId, jsonContent) {
+						server.sendNoti(AdminId, jsonContent);
+					}
+					return self;
+				})(localStorage.MemberId);
+			})(jQuery);
+
+			$(function() {
+				//				$.notification.SendNoti(9, "22314")；
+				$.notification.GetNoti = function(data) {
+					var send = data.context;
+					console.log(send);
+					if(send == 'CONFIRM_LOGIN') {
+						$(".loginSure").show();
+						$(".bagfil").addClass("bgfilter");
+						$(".adopt").click(function() {
+							dengLu(1);
+						});
+						$(".refuse").click(function() {
+							dengLu(0);
+						});
+					}
+
+					function dengLu(num) {
+						$(".loginSure").hide();
+						$(".bagfil").removeClass("bgfilter");
+						$.ajax({
+							type: "post",
+							url: host + "/api/members/member/confirmlogin",
+							data: {
+								MemberId: localStorage.MemberId,
+								U_Num: localStorage.u_num,
+								isConfirm: num
+							},
+							success: function() {
+								console.log("成功");
+							}
+						});
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>
